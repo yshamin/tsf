@@ -19,54 +19,64 @@
     <id>bin</id>
     <formats>
         <format>tar.gz</format>
+        <format>zip</format>
+        <format>dir</format>
     </formats>
     <fileSets>
-
-        <!-- Expanded ServiceMix Runtime -->
+        <!-- Expanded Karaf Runtime -->
         <fileSet>
-            <directory>target/dependencies/unix/apache-karaf-${karaf.version}</directory>
+            <directory>target/dependencies/cxf/apache-cxf-${cxf.version}</directory>
             <outputDirectory>/</outputDirectory>
             <excludes>
-              <exclude>**/demos/**</exclude>
-              <exclude>bin/**</exclude>
-              <exclude>etc/system.properties</exclude>
-              <exclude>etc/org.apache.karaf.features.cfg</exclude>
-              <exclude>etc/org.ops4j.pax.logging.cfg</exclude>
-              <exclude>etc/users.properties</exclude>
-              <exclude>etc/custom.properties</exclude>
-              <exclude>etc/jre.properties</exclude>
-              <exclude>LICENSE</exclude>
-              <exclude>NOTICE</exclude>
-              <exclude>README</exclude>
-              <exclude>RELEASE-NOTES</exclude>
-              <exclude>karaf-manual*</exclude>
+                <exclude>LICENSE</exclude>
+                <exclude>NOTICE</exclude>
+                <exclude>README</exclude>
+                <exclude>bin/*.bat</exclude>
+                <exclude>release_notes.txt</exclude>
+            </excludes>
+        </fileSet>
+        <fileSet>
+            <directory>target/dependencies/cxf/apache-cxf-${cxf.version}/bin</directory>
+            <outputDirectory>/bin</outputDirectory>
+            <includes>
+                <include>*.bat</include>
+            </includes>
+            <lineEnding>dos</lineEnding>
+            <fileMode>0644</fileMode>
+        </fileSet>
+        <!-- Expanded Karaf Runtime -->
+        <fileSet>
+            <directory>target/dependencies/unix/apache-karaf-${karaf.version}</directory>
+            <outputDirectory>/container</outputDirectory>
+            <excludes>
+                <exclude>**/demos/**</exclude>
+                <exclude>bin/**</exclude>
+                <exclude>etc/system.properties</exclude>
+                <exclude>etc/org.apache.karaf.features.cfg</exclude>
+                <exclude>etc/org.ops4j.pax.logging.cfg</exclude>
+                <exclude>etc/users.properties</exclude>
+                <exclude>etc/custom.properties</exclude>
+                <exclude>etc/jre.properties</exclude>
+                <exclude>LICENSE</exclude>
+                <exclude>NOTICE</exclude>
+                <exclude>README</exclude>
+                <exclude>RELEASE-NOTES</exclude>
+                <exclude>karaf-manual*</exclude>
             </excludes>
         </fileSet>
 
         <!-- Copy over bin/servicemix separately to get the correct file mode -->
         <fileSet>
             <directory>target/dependencies/unix/apache-karaf-${karaf.version}</directory>
-            <outputDirectory>/</outputDirectory>
+            <outputDirectory>/container</outputDirectory>
             <includes>
-              <include>bin/admin</include>
-              <include>bin/karaf</include>  <!-- we need this one in here for admin:create'd instances to work -->
-              <include>bin/start</include>
-              <include>bin/stop</include>
+                <include>bin/admin</include>
+                <include>bin/karaf</include>  <!-- we need this one in here for admin:create'd instances to work -->
+                <include>bin/start</include>
+                <include>bin/stop</include>
             </includes>
             <fileMode>0755</fileMode>
         </fileSet>
-
-        <!-- Copy over karaf demo to examples folder -->
-        <fileSet>
-            <directory>target/dependencies/unix/apache-karaf-${karaf.version}/demos</directory>
-            <outputDirectory>/examples/karaf-demos</outputDirectory>
-            <lineEnding>unix</lineEnding>
-            <includes>
-              <include>pom.xml</include>
-              <include>**/web/**</include>
-            </includes>
-        </fileSet>
-       
 
         <!-- Copy license and other files from root -->
         <fileSet>
@@ -81,76 +91,46 @@
         </fileSet>
 
 
-        <!-- Copy over everything that needs to get unix line endings -->
         <fileSet>
             <directory>src/main/distribution/text</directory>
             <outputDirectory>/</outputDirectory>
-            <lineEnding>unix</lineEnding>
             <fileMode>0644</fileMode>
-        </fileSet>        
+        </fileSet>
         <fileSet>
             <directory>target/classes/etc</directory>
-            <outputDirectory>/etc/</outputDirectory>
+            <outputDirectory>/container/etc/</outputDirectory>
             <lineEnding>unix</lineEnding>
             <fileMode>0644</fileMode>
         </fileSet>
-	   <fileSet>
-            <directory>src/main/distribution/unix-shell</directory>
-            <outputDirectory>/</outputDirectory>
-            <lineEnding>unix</lineEnding>
-            <fileMode>0755</fileMode>
-        </fileSet>
 
         <fileSet>
-          <directory>target/features-repo</directory>
-          <outputDirectory>system</outputDirectory>
+            <directory>target/features-repo</directory>
+            <outputDirectory>/container/system</outputDirectory>
         </fileSet>
-
     </fileSets>
 
     <files>
         <file>
             <source>${basedir}/target/dependencies/unix/apache-karaf-${karaf.version}/bin/karaf</source>
-            <outputDirectory>/bin/</outputDirectory>
+            <outputDirectory>/container/bin/</outputDirectory>
             <destName>tsf</destName>
             <fileMode>0755</fileMode>
             <lineEnding>unix</lineEnding>
         </file>
         <file>
             <source>${basedir}/target/classes/features.xml</source>
-            <outputDirectory>system/com/talend/sf/${artifactId}/${version}</outputDirectory>
+            <outputDirectory>/container/system/com/talend/sf/${artifactId}/${version}</outputDirectory>
             <destName>${artifactId}-${version}-features.xml</destName>
             <fileMode>0644</fileMode>
             <lineEnding>unix</lineEnding>
         </file>
         <file>
             <source>${basedir}/target/classes/activemq-features.xml</source>
-            <outputDirectory>system/org/apache/activemq/activemq-karaf/${activemq.version}</outputDirectory>
+            <outputDirectory>/container/system/org/apache/activemq/activemq-karaf/${activemq.version}</outputDirectory>
             <destName>activemq-karaf-${activemq.version}-features.xml</destName>
             <fileMode>0644</fileMode>
             <lineEnding>unix</lineEnding>
         </file>
-        <!--file>
-            <source>${basedir}/target/classes/camel-features.xml</source>
-            <outputDirectory>system/org/apache/camel/karaf/apache-camel/${camel.version}</outputDirectory>
-            <destName>apache-camel-${camel.version}-features.xml</destName>
-            <fileMode>0644</fileMode>
-            <lineEnding>unix</lineEnding>
-        </file-->
-        <!--file>
-            <source>${basedir}/target/maven-shared-archive-resources/META-INF/LICENSE</source>
-            <outputDirectory>/</outputDirectory>
-            <destName>LICENSE</destName>
-            <fileMode>0644</fileMode>
-            <lineEnding>unix</lineEnding>
-        </file>
-        <file>
-            <source>${basedir}/target/maven-shared-archive-resources/META-INF/NOTICE</source>
-            <outputDirectory>/</outputDirectory>
-            <destName>NOTICE</destName>
-            <fileMode>0644</fileMode>
-            <lineEnding>unix</lineEnding>
-        </file-->
     </files>
 
     <dependencySets>
@@ -164,7 +144,7 @@
             </includes>
         </dependencySet-->
         <dependencySet>
-            <outputDirectory>/system</outputDirectory>
+            <outputDirectory>/container/system</outputDirectory>
             <unpack>false</unpack>
             <useProjectArtifact>false</useProjectArtifact>
             <outputFileNameMapping>org/apache/felix/${artifact.artifactId}/${artifact.baseVersion}/${artifact.artifactId}-${artifact.baseVersion}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
@@ -173,7 +153,7 @@
             </includes>
         </dependencySet>
         <dependencySet>
-            <outputDirectory>/system</outputDirectory>
+            <outputDirectory>/container/system</outputDirectory>
             <unpack>false</unpack>
             <useProjectArtifact>false</useProjectArtifact>
             <outputFileNameMapping>org/springframework/${artifact.artifactId}/${artifact.baseVersion}/${artifact.artifactId}-${artifact.baseVersion}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
@@ -186,7 +166,7 @@
             </includes>
         </dependencySet>
         <dependencySet>
-            <outputDirectory>/system</outputDirectory>
+            <outputDirectory>/container/system</outputDirectory>
             <unpack>false</unpack>
             <useProjectArtifact>false</useProjectArtifact>
             <outputFileNameMapping>org/springframework/osgi/${artifact.artifactId}/${artifact.baseVersion}/${artifact.artifactId}-${artifact.baseVersion}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
@@ -197,7 +177,7 @@
             </includes>
         </dependencySet>
         <dependencySet>
-            <outputDirectory>/system</outputDirectory>
+            <outputDirectory>/container/system</outputDirectory>
             <unpack>false</unpack>
             <useProjectArtifact>false</useProjectArtifact>
             <outputFileNameMapping>org/apache/geronimo/specs/${artifact.artifactId}/${artifact.baseVersion}/${artifact.artifactId}-${artifact.baseVersion}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
@@ -207,7 +187,7 @@
             </includes>
         </dependencySet>
         <dependencySet>
-            <outputDirectory>/system</outputDirectory>
+            <outputDirectory>/container/system</outputDirectory>
             <unpack>false</unpack>
             <useProjectArtifact>false</useProjectArtifact>
             <outputFileNameMapping>org/apache/servicemix/bundles/${artifact.artifactId}/${artifact.baseVersion}/${artifact.artifactId}-${artifact.baseVersion}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
@@ -223,7 +203,7 @@
             </includes>
         </dependencySet>
         <dependencySet>
-            <outputDirectory>/system</outputDirectory>
+            <outputDirectory>/container/system</outputDirectory>
             <unpack>false</unpack>
             <useProjectArtifact>false</useProjectArtifact>
             <outputFileNameMapping>org/apache/servicemix/specs/${artifact.artifactId}/${artifact.baseVersion}/${artifact.artifactId}-${artifact.baseVersion}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>

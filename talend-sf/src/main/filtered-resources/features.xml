@@ -59,12 +59,12 @@
         <bundle>mvn:org.apache.geronimo.specs/geronimo-servlet_2.5_spec/${geronimo-servlet.version}</bundle>
         <bundle>mvn:org.apache.cxf/cxf-bundle/${cxf.version}</bundle>
     </feature>
-    <feature name="cxf-osgi" version="${version}">
+    <feature name="cxf-osgi" version="${cxf.version}">
         <feature version="${cxf.version}">cxf</feature>
         <feature version="${karaf.version}">war</feature>
     </feature>
-    <feature name="cxf-jaxrs" version="${version}">
-        <feature version="${version}">cxf-osgi</feature>
+    <feature name="cxf-jaxrs" version="${cxf.version}">
+        <feature version="${cxf.version}">cxf-osgi</feature>
         <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.abdera/${abdera.bundle.version}</bundle>
         <bundle>mvn:org.codehaus.jettison/jettison/${jettison.version}</bundle>
         <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xmlbeans/${xmlbeans.bundle.version}</bundle>

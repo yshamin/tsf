@@ -14,7 +14,7 @@
         <version>1.0</version>
     </parent>
     <properties>
-        <cxf.version>2.3.0</cxf.version>
+        <cxf.version>2.3.1-SNAPSHOT</cxf.version>
         <spring.version>3.0.4.RELEASE</spring.version>
         <spring.osgi.version>1.2.0</spring.osgi.version>
         <activemq.version>5.4.1</activemq.version>
@@ -915,7 +915,7 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>unix-bin</id>
+                        <id>bin</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
@@ -923,26 +923,14 @@
                         <configuration>
                             <descriptors>
                                 <descriptor>src/main/descriptors/unix-bin.xml</descriptor>
+                                <!--descriptor>src/main/descriptors/windows-bin.xml</descriptor-->
                             </descriptors>
                             <finalName>${project.artifactId}-${project.version}</finalName>
                             <tarLongFileMode>gnu</tarLongFileMode>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>windows-bin</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <descriptors>
-                                <descriptor>src/main/descriptors/windows-bin.xml</descriptor>
-                            </descriptors>
-                            <finalName>${project.artifactId}-${project.version}</finalName>
-                        </configuration>
-                    </execution>
                     <!--execution>
-                        <id>unix-src</id>
+                        <id>src</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
@@ -950,20 +938,9 @@
                         <configuration>
                             <descriptors>
                                 <descriptor>src/main/descriptors/unix-src.xml</descriptor>
-                            </descriptors>
-                            <tarLongFileMode>gnu</tarLongFileMode>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>windows-src</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <descriptors>
                                 <descriptor>src/main/descriptors/windows-src.xml</descriptor>
                             </descriptors>
+                            <tarLongFileMode>gnu</tarLongFileMode>
                         </configuration>
                     </execution-->
                 </executions>
@@ -971,44 +948,5 @@
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <id>assembly-src</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-assembly-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>unix-src</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>attached</goal>
-                                </goals>
-                                <configuration>
-                                    <descriptors>
-                                        <descriptor>src/main/descriptors/unix-src.xml</descriptor>
-                                    </descriptors>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>windows-src</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>attached</goal>
-                                </goals>
-                                <configuration>
-                                    <descriptors>
-                                        <descriptor>src/main/descriptors/windows-src.xml</descriptor>
-                                    </descriptors>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
 
