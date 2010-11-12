@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>com.example.restservice</groupId>
+   <artifactId>AdvancedRESTServiceSample</artifactId>
+   <version>1.0-SNAPSHOT</version>
+   <name>Advanced REST Service</name>
+   <packaging>pom</packaging>
+
+   <modules>
+      <module>common</module> 
+      <module>client</module>
+      <module>service-war</module>
+   </modules>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+               <source>1.6</source>
+               <target>1.6</target>
+            </configuration>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-eclipse-plugin</artifactId>
+            <configuration>
+               <downloadSources>true</downloadSources>
+               <!--downloadJavadocs>true</downloadJavadocs-->
+               <!--useProjectReferences>false</useProjectReferences-->
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+   <profiles>
+      <profile>
+         <id>CXF</id>
+         <activation>
+            <activeByDefault>true</activeByDefault>
+         </activation>
+         <properties>
+            <cxf.version>2.3.1-SNAPSHOT</cxf.version>
+         </properties>
+         <dependencies>
+	    <dependency>
+	       <groupId>org.apache.cxf</groupId>
+	       <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+	       <version>${cxf.version}</version>
+  	    </dependency>
+         </dependencies>
+      </profile>
+
+   </profiles>
+
+</project>
+
