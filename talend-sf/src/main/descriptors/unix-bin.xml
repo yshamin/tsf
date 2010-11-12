@@ -18,9 +18,9 @@
 <assembly>
     <id>bin</id>
     <formats>
+        <format>dir</format>
         <format>tar.gz</format>
         <format>zip</format>
-        <format>dir</format>
     </formats>
     <fileSets>
         <!-- Expanded Karaf Runtime -->
@@ -76,6 +76,18 @@
                 <include>bin/stop</include>
             </includes>
             <fileMode>0755</fileMode>
+        </fileSet>
+        <fileSet>
+            <directory>target/dependencies/win/apache-karaf-${karaf.version}</directory>
+            <outputDirectory>/container</outputDirectory>
+            <includes>
+                <include>bin/admin.bat</include>
+                <include>bin/karaf.bat</include>  <!-- we need this one in here for admin:create'd instances to work -->
+                <include>bin/start.bat</include>
+                <include>bin/stop.bat</include>
+            </includes>
+            <lineEnding>dos</lineEnding>
+            <fileMode>0644</fileMode>
         </fileSet>
 
         <!-- Copy license and other files from root -->
