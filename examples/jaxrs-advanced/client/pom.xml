@@ -5,20 +5,20 @@
 
    <modelVersion>4.0.0</modelVersion>
    <parent>
-      <groupId>com.example.restservice</groupId>
-      <artifactId>AdvancedRESTServiceSample</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <groupId>com.talend.sf.examples</groupId>
+      <artifactId>jaxrs-advanced-example</artifactId>
+      <version>1.0</version>
       <relativePath>..</relativePath>
    </parent>
-   <artifactId>advanced-client</artifactId>
-   <name>REST Client for AdvancedRESTServiceSample</name>
+   <artifactId>jaxrs-advanced-client</artifactId>
+   <name>REST Client for Advanced JAX-RS Example</name>
    <packaging>jar</packaging>
 
    <dependencies>
       <dependency>
-         <groupId>com.example.restservice</groupId>
-         <artifactId>advanced-service-common</artifactId>
-         <version>1.0-SNAPSHOT</version>
+         <groupId>com.talend.sf.examples</groupId>
+         <artifactId>jaxrs-advanced-common</artifactId>
+         <version>1.0</version>
       </dependency>
    </dependencies>
 

@@ -4,21 +4,21 @@
 
    <modelVersion>4.0.0</modelVersion>
    <parent>
-      <groupId>com.example.restservice</groupId>
-      <artifactId>AdvancedRESTServiceSample</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <groupId>com.talend.sf.examples</groupId>
+      <artifactId>jaxrs-advanced-example</artifactId>
+      <version>1.0</version>
       <relativePath>..</relativePath>
    </parent>
-   <artifactId>advanced-service-war</artifactId>
-   <name>AdvancedServiceSample REST Provider</name>
+   <artifactId>jaxrs-advanced-service-war</artifactId>
+   <name>Advanced JAX-RS Example REST Resource</name>
    <packaging>war</packaging>
    <url>http://maven.apache.org</url>
 
    <dependencies>
      <dependency>
-       <groupId>com.example.restservice</groupId>
-       <artifactId>advanced-service-common</artifactId>
-       <version>1.0-SNAPSHOT</version>
+       <groupId>com.talend.sf.examples</groupId>
+       <artifactId>jaxrs-advanced-common</artifactId>
+       <version>1.0</version>
      </dependency>
      <dependency>
         <groupId>wsdl4j</groupId>
