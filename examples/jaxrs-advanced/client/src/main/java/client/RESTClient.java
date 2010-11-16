@@ -22,8 +22,7 @@ public final class RESTClient {
     
     private static void useWebClient() throws Exception {
     	
-    	WebClient wc = WebClient.create("http://localhost:8080/personservice");
-    	
+    	WebClient wc = WebClient.create("http://localhost:8080/personservice/");
     	// get all persons
     	System.out.println("Getting the XML collection of all persons in a type-safe way...");
         wc.accept(MediaType.APPLICATION_XML);
@@ -97,7 +96,17 @@ public final class RESTClient {
         getPersons(wc);
         
         System.out.println("Fred has become 40, updating his age");
-        wc.back(false).path("age").type("text/plain").put(40);
+        wc.back(false).path("age").type("text/plain");
+        
+        Response rc = wc.put(20);
+        if (rc.getStatus() != 400) {
+        	throw new RuntimeException("Fred has become older, not younger");
+        }
+        
+        rc = wc.put(40);
+        if (rc.getStatus() != 200) {
+        	throw new RuntimeException("Impossible to update Fred's age");
+        }
         
         System.out.println("Getting up to date info about Fred");
         wc.back(false);

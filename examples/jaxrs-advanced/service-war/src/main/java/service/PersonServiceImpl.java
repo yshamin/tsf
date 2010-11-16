@@ -56,7 +56,7 @@ public class PersonServiceImpl implements PersonService {
 	
 	private void init() { 
 		
-		Person mother = new Person("Lorrain", 50);
+		Person mother = new Person("Lorraine", 50);
 		mother.setId(ID.incrementAndGet());
 		persons.put(mother.getId(), mother);
 		

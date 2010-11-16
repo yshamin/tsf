@@ -17,6 +17,9 @@
         <jaxrs:serviceBeans>
            <ref bean="personBean" />
         </jaxrs:serviceBeans>
+        <jaxrs:providers>
+           <bean class="service.PersonExceptionMapper" />
+        </jaxrs:providers>
      </jaxrs:server>
 
      <bean id="personBean" class="service.PersonServiceImpl"/>

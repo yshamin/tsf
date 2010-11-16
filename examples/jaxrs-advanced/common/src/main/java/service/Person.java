@@ -116,8 +116,11 @@ public class Person {
     @PUT
     @Consumes("text/plain")
     @Path("age")
-    public Response updateAge(int age) {
-    	setAge(age);
+    public Response updateAge(int newAge) throws PersonUpdateException {
+    	if (age > newAge) {
+    		throw new PersonUpdateException();
+    	}
+    	setAge(newAge);
     	return Response.ok().build();
     }
     
