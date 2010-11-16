@@ -15,6 +15,7 @@
 
    <modules>
       <module>jaxrs-advanced</module>
+      <module>jaxrs-intro</module>
    </modules>
 
    <build>
