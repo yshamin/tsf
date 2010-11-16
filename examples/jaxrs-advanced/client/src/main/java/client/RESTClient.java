@@ -2,27 +2,36 @@ package client;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.cxf.helpers.IOUtils;
+import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
 import org.apache.cxf.jaxrs.client.WebClient;
 
 import service.Person;
+import service.PersonCollection;
+import service.PersonService;
 
 
 public final class RESTClient {
     public static void main (String[] args) throws Exception {
     	
-    	useWebClient();
-        
+    	usePersonService();
+    	useSearchService();
+    	
+    	useSimpleProxy();
     } 
     
-    private static void useWebClient() throws Exception {
+    private static void usePersonService() throws Exception {
     	
-    	WebClient wc = WebClient.create("http://localhost:8080/personservice/");
+    	System.out.println("Using a Web Client...");
+    	
+    	WebClient wc = WebClient.create("http://localhost:8080/personservice/main");
     	// get all persons
     	System.out.println("Getting the XML collection of all persons in a type-safe way...");
         wc.accept(MediaType.APPLICATION_XML);
@@ -43,8 +52,9 @@ public final class RESTClient {
             wc.back(false);
         }
         
-        // Get Person with id 4 (still using JSON) :
-        System.out.println("Getting info about Fred using JSON in a type-safe way...");
+        // Get Person with id 4 :
+        System.out.println("Getting info about Fred...");
+        wc.reset().accept(MediaType.APPLICATION_XML);
         wc.path("4");
         getPerson(wc);
     
@@ -104,7 +114,7 @@ public final class RESTClient {
         }
         
         rc = wc.put(40);
-        if (rc.getStatus() != 200) {
+        if (rc.getStatus() != 204) {
         	throw new RuntimeException("Impossible to update Fred's age");
         }
         
@@ -114,7 +124,36 @@ public final class RESTClient {
         
     }
     
+    private static void useSearchService() throws Exception {
+    	
+    	System.out.println("Searching...");
+    	
+    	WebClient wc = WebClient.create("http://localhost:8080/personservice/search");
+    	wc.accept(MediaType.APPLICATION_XML);
+    	wc.query("name", "Fred", "Lorraine");
+        PersonCollection persons = wc.get(PersonCollection.class);
+        
+        for (Person person : persons.getList()) {
+        	System.out.println("Found : " + person.getName());
+        }
+        
+        
+    }
 
+    private static void useSimpleProxy() {
+    	
+    	System.out.println("Using a simple JAX-RS proxy to get all the persons...");
+    	
+    	String webAppAddress = "http://localhost:8080/personservice";
+    	PersonService proxy = JAXRSClientFactory.create(webAppAddress, PersonService.class);
+    	
+    	Collection<Person> persons = proxy.getAll();
+    	for (Iterator<Person> it = persons.iterator(); it.hasNext(); ) {
+    		Person person = it.next();
+    		System.out.println("ID " + person.getId() + " : " + person.getName() + ", age : " + person.getAge());
+    	}
+    }
+    
     private static Person getPerson(WebClient wc) {
     	Person person = wc.get(Person.class);
         System.out.println("ID " + person.getId() + " : " + person.getName() + ", age : " + person.getAge());

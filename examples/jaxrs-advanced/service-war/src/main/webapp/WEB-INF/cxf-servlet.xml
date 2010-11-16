@@ -15,13 +15,27 @@
 
      <jaxrs:server id="personService" address="/">
         <jaxrs:serviceBeans>
-           <ref bean="personBean" />
+           <ref bean="personBean"/>
+           <ref bean="searchBean"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
            <bean class="service.PersonExceptionMapper" />
+           <ref bean="jsonProvider"/>
         </jaxrs:providers>
      </jaxrs:server>
 
-     <bean id="personBean" class="service.PersonServiceImpl"/>
+     <bean id="searchBean" class="service.PersonServiceImpl">
+         <property name="storage" ref="storageBean"/>
+     </bean>
+     
+     <bean id="personBean" class="service.SearchService">
+         <property name="storage" ref="storageBean"/>
+     </bean>
+     
+     <bean id="storageBean" class="service.PersonInfoStorage"/>
+     
+     <bean id="jsonProvider" class="org.apache.cxf.jaxrs.provider.JSONProvider">
+         <property name="ignoreNamespaces" value="true"/>
+     </bean>
 </beans>
 
