@@ -36,7 +36,7 @@
             </executions>
             <configuration>
                <executable>java</executable>
-               <mainClass>client.RESTClient</mainClass>>
+               <mainClass>client.RESTClient</mainClass>
             </configuration>
          </plugin>
       </plugins>
