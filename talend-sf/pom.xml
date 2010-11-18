@@ -45,7 +45,6 @@
         <geronimo-transaction.version>2.1.3</geronimo-transaction.version>
 
         <!-- ServiceMix Bundles -->
-        <abdera.bundle.version>0.4.0-incubating_4</abdera.bundle.version>
         <ant.bundle.version>1.7.0_4</ant.bundle.version>
         <antlr2.bundle.version>2.7.7_3</antlr2.bundle.version>
         <antlr.bundle.version>3.0.1_4</antlr.bundle.version>
@@ -129,6 +128,7 @@
 
 
         <!-- Other Dependencies -->
+        <abdera.version>1.1</abdera.version>
         <axiom.version>1.2.8</axiom.version>
         <bouncycastle.version>140</bouncycastle.version>
         <commons-dbcp.version>1.3</commons-dbcp.version>
@@ -492,11 +492,6 @@
         </dependency>
         
         <!-- Bundles -->
-        <dependency>
-            <groupId>org.apache.servicemix.bundles</groupId>
-            <artifactId>org.apache.servicemix.bundles.abdera</artifactId>
-            <version>${abdera.bundle.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.apache.servicemix.bundles</groupId>
             <artifactId>org.apache.servicemix.bundles.ant</artifactId>
