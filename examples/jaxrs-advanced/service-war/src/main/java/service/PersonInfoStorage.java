@@ -7,6 +7,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
+import common.Person;
+
+/**
+ * Storage used by both PersonService and SearchService
+ *
+ */
 public class PersonInfoStorage {
 	private static AtomicLong ID = new AtomicLong();
 	private Map<Long, Person> persons = 

@@ -7,6 +7,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import common.Person;
+import common.PersonCollection;
+
+/**
+ * JAX-RS SerachService root resource
+ *
+ */
 @Path("search")
 public class SearchService {
 

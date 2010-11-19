@@ -1,4 +1,4 @@
-package service;
+package common;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +10,20 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * This class can act as JAXB bean, JAX-RS sub-resource delegating to another 
+ * sub-resource and JAX-RS final resource dealing with the concrete HTTP verbs.
+ *
+ * See getState() : this method is a JAX-RS resource method which also returns 
+ * the state of Person
+ * 
+ * See getMother() and other methods having JAX-RS @Path annotation only - these are
+ * JAX-RS sub-resource locators delegating to other sub-resources. In this example they all
+ * delegate to the same instance to handle the request via getState() methods.
+ * 
+ * Also check updateAge() method. It returns 'void' which will result in HTTP 204 being returned
+ * to client. This method can also throw the exceptions which can be caught by JAX-RS ExceptionMappers.  
+ */
 @XmlRootElement(name = "Person", namespace = "http://org.persons")
 @Produces({"application/xml", "application/json" })
 public class Person {

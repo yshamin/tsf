@@ -1,5 +1,9 @@
-package service;
+package common;
 
+/**
+ * Indicates that the Person update request was invalid
+ *
+ */
 public class PersonUpdateException extends Exception {
 
 	private static final long serialVersionUID = 1L;

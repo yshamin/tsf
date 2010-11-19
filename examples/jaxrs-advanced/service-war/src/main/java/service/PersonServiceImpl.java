@@ -8,10 +8,20 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
+import common.Person;
+import common.PersonService;
+/**
+ * JAX-RS PersonService root resource
+ *
+ */
 public class PersonServiceImpl implements PersonService {
 
 	private PersonInfoStorage storage;
 	
+	/**
+	 * Thread-safe JAX-RS UriInfo proxy providing the information 
+	 * about the current request URI, etc
+	 */
 	@Context
 	private UriInfo uriInfo;
 	

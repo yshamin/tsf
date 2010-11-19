@@ -13,47 +13,72 @@ import org.apache.cxf.helpers.IOUtils;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
 import org.apache.cxf.jaxrs.client.WebClient;
 
-import service.Person;
-import service.PersonCollection;
-import service.PersonService;
+import common.Person;
+import common.PersonCollection;
+import common.PersonService;
 
-
+/**
+ *  Example showing the interaction between HTTP-centric and proxy based RESTful 
+ *  clients and JAX-RS server providing multiple services (PersonService and SearchService)
+ */
 public final class RESTClient {
     public static void main (String[] args) throws Exception {
     	
+    	// uses CXF JAX-RS WebClient
     	usePersonService();
+    	// uses CXF JAX-RS WebClient
     	useSearchService();
-    	
+    	// uses a basic proxy
     	useSimpleProxy();
     } 
     
+    /**
+     * PersonService provides information about all the persons it knows about, 
+     * about individual persons and their relatives :
+     * - ancestors - parents, grandparents, etc
+     * - descendants - children, etc
+     * - partners
+     * 
+     * Additionally it can help with adding the information about new children 
+     * to existing persons and update the age of the current Person
+     */
     private static void usePersonService() throws Exception {
     	
     	System.out.println("Using a Web Client...");
     	
-    	WebClient wc = WebClient.create("http://localhost:8080/personservice/main");
-    	// get all persons
+    	// A single web client will be used to retrieve all the information
+    	final String personServiceURI = "http://localhost:8080/personservice/main";
+    	WebClient wc = WebClient.create(personServiceURI);
+    	
+    	// Get the list of all persons
     	System.out.println("Getting the XML collection of all persons in a type-safe way...");
         wc.accept(MediaType.APPLICATION_XML);
         List<Person> persons = getPersons(wc);
         
-        // get individual persons using JSON
+        // Get individual persons using JSON
         System.out.println("Getting individual persons using JSON...");
         wc.reset().accept(MediaType.APPLICATION_JSON);
         for (Person person : persons) {
-        	// move forward
+        	// Move forward, for example, given that web client is currently positioned at
+        	// personServiceURI and a current person id such as 4, wc.path(id) will point 
+        	// the client to "http://localhost:8080/personservice/main/4"
         	wc.path(person.getId());
         	
-        	// read the stream
+        	// Read the stream
         	InputStream is = wc.get(InputStream.class);
             System.out.println(IOUtils.toString(is));
             
-            // move one path segment back
+            // Move only one path segment back, to "http://localhost:8080/personservice/main"
+            // Note that if web client moved few segments forward from the base personServiceURI
+            // then wc.back(true) would bring the client back to the baseURI
             wc.back(false);
         }
         
         // Get Person with id 4 :
         System.out.println("Getting info about Fred...");
+        
+        // wc.reset() insures the current path is reset to the base personServiceURI and 
+        // the headers which may have been set during the previous invocations are also reset.
         wc.reset().accept(MediaType.APPLICATION_XML);
         wc.path("4");
         getPerson(wc);
@@ -96,34 +121,48 @@ public final class RESTClient {
         	throw new RuntimeException("No child resource has been created");
         }
         
+        // Follow the Location header pointing to a new child resource 
+        // and get the information, confirm it is Harry
         String location = response.getMetadata().getFirst("Location").toString();
-        WebClient childClient = WebClient.create(location);
-        // get the information about the child, confirm it is Harry
-        getPerson(childClient);
+        getPerson(WebClient.create(location));
         
         System.out.println("Getting an up to date info about Fred's children");
-        wc.back(false).path("children");
         getPersons(wc);
         
         System.out.println("Fred has become 40, updating his age");
-        wc.back(false).path("age").type("text/plain");
+        // WebClient is currently pointing to personServiceURI + "/4" + "/children"
+        wc.back(false);
+        // Back to personServiceURI + "/4"
+        wc.path("age").type("text/plain");
         
+        // Trying to update the age to the wrong value by mistake
         Response rc = wc.put(20);
+        // HTTP Bad Request status is expected 
         if (rc.getStatus() != 400) {
         	throw new RuntimeException("Fred has become older, not younger");
         }
         
         rc = wc.put(40);
+        // 204 (No Content) is a typical HTTP PUT response
         if (rc.getStatus() != 204) {
         	throw new RuntimeException("Impossible to update Fred's age");
         }
         
         System.out.println("Getting up to date info about Fred");
+        // WebClient is currently pointing to personServiceURI + "/4" + "/age"
         wc.back(false);
+        // Back to personServiceURI + "/4"
         getPerson(wc);
         
     }
     
+    /**
+     * SearchService is a simple service which shares the information about 
+     * Persons with the PersonService. It lets users search for individual people
+     * by specifying one or more names as query parameters. The interaction with 
+     * this service also verifies that the JAX-RS server is capable of supporting 
+     * multiple root resource classes 
+     */
     private static void useSearchService() throws Exception {
     	
     	System.out.println("Searching...");
@@ -140,6 +179,16 @@ public final class RESTClient {
         
     }
 
+    /**
+     * This function uses a proxy which is capable transforming typed 
+     * invocations into proper HTTP calls which will be understood by RESTful services.
+     * This works for subresources as well. Interfaces and concrete classes can be proxified,
+     * in the latter case a CGLIB runtime dependency is needed.
+     * 
+     * CXF JAX-RS proxies can be configured the same way as HTTP-centric WebClients
+     * and response status and headers can also be checked. HTTP response errors can be
+     * converted into typed exceptions. 
+     */
     private static void useSimpleProxy() {
     	
     	System.out.println("Using a simple JAX-RS proxy to get all the persons...");
