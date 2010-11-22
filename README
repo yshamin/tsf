@@ -1,0 +1,31 @@
+Welcome to Talend Services Framework!
+=====================================
+
+Talend Services Framework is......
+
+
+
+Contents
+========
+This package contains a complete version of Apache CXF with the 
+following "extras" and changes:
+
+examples/ - the examples subdirectory contains additional examples
+            applications and tutorials that demonstrate additional
+	    functionality and advanced features of Talend Services
+	    Framework
+
+container/ - the container subdirectory contains a preconfigured
+            OSGi container that contains all the required OSGi bundles
+	    for the CXF 3rd party dependencies.  It also includes
+	    Apache Karaf to provide easy administration and 
+	    configuration.  See the karaf-manual pdf file in
+	    the container directory for more information about Karaf.
+
+lib/ - the contends of the lib directory have been optimized for 
+       use on Java 6.  Jars that are redundant to what is available
+       in Java 6 have been removed.
+
+
+
+

@@ -76,6 +76,8 @@
         <jasypt.bundle.version>1.6_1</jasypt.bundle.version>
         <jaxb-impl.bundle.version>2.1.13_1</jaxb-impl.bundle.version>
         <jaxb-xjc.bundle.version>2.1.13_1</jaxb-xjc.bundle.version>
+        <jaxb-impl.version>2.1.13</jaxb-impl.version>
+        <jaxb-xjc.version>2.1.13</jaxb-xjc.version>
         <jaxen.bundle.version>1.1.1_1</jaxen.bundle.version>
         <jcr-api.bundle.version>1.0_3</jcr-api.bundle.version>
         <jdt-core.bundle.version>3.2.3_4</jdt-core.bundle.version>
@@ -824,8 +826,52 @@
             <artifactId>commons-management</artifactId>
             <version>${commons-management.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-xjc</artifactId>
+            <version>${jaxb-xjc.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.xml.bind</groupId>
+                    <artifactId>jsr173_api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.xml.bind</groupId>
+                    <artifactId>jaxb-impl</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>${jaxb-impl.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.xml.bind</groupId>
+                    <artifactId>jsr173_api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.xml</groupId>
+                    <artifactId>jsr173</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.activation</groupId>
+                    <artifactId>activation</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.xml.bind</groupId>
+                    <artifactId>activation</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.xml.bind</groupId>
+                    <artifactId>jaxb-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
     
+
+
 
 
     <build>
@@ -886,6 +932,8 @@
                 </executions>
             </plugin>
         
+
+
 
 
             <plugin>
@@ -949,19 +997,19 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2</version>
                 <executions>
                     <execution>
-                        <id>bin</id>
+                        <id>distribution-package</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
                         </goals>
                         <configuration>
                             <descriptors>
-                                <descriptor>src/main/descriptors/unix-bin.xml</descriptor>
-                                <!--descriptor>src/main/descriptors/windows-bin.xml</descriptor-->
+                                <descriptor>src/main/descriptors/bin.xml</descriptor>
                             </descriptors>
-                            <finalName>${project.artifactId}-${project.version}</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
                             <tarLongFileMode>gnu</tarLongFileMode>
                         </configuration>
                     </execution>
@@ -983,6 +1031,18 @@
             </plugin>
         </plugins>
     </build>
-
+    <repositories>
+        <repository>
+            <id>apache.snapshots</id>
+            <url>http://repository.apache.org/snapshots/</url>
+            <name>Apache Snapshot Repo</name>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+    </repositories>
 </project>
 
