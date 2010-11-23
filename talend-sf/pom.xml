@@ -151,7 +151,6 @@
         <junit.version>4.7</junit.version>
         <log4j.version>1.2.16</log4j.version>
         <openjpa.version>2.0.0</openjpa.version>
-        <scriptengines.version>1.1</scriptengines.version>
         <tranql.version>1.6</tranql.version>
         <woodstox.version>4.0.8</woodstox.version>
         <woodstox.stax2-api.version>3.0.2</woodstox.stax2-api.version>
@@ -717,21 +716,6 @@
             <version>${bouncycastle.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.google.code.scriptengines</groupId>
-            <artifactId>scriptengines-javascript</artifactId>
-            <version>${scriptengines.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.scriptengines</groupId>
-            <artifactId>scriptengines-jruby</artifactId>
-            <version>${scriptengines.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.scriptengines</groupId>
-            <artifactId>scriptengines-groovy</artifactId>
-            <version>${scriptengines.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.sun.xml.parsers</groupId>
             <artifactId>jaxp-ri</artifactId>
             <version>${jaxp-ri.version}</version>
@@ -1013,20 +997,6 @@
                             <tarLongFileMode>gnu</tarLongFileMode>
                         </configuration>
                     </execution>
-                    <!--execution>
-                        <id>src</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <descriptors>
-                                <descriptor>src/main/descriptors/unix-src.xml</descriptor>
-                                <descriptor>src/main/descriptors/windows-src.xml</descriptor>
-                            </descriptors>
-                            <tarLongFileMode>gnu</tarLongFileMode>
-                        </configuration>
-                    </execution-->
                 </executions>
             </plugin>
         </plugins>
@@ -1042,17 +1012,6 @@
             <releases>
                 <enabled>false</enabled>
             </releases>
-        </repository>
-        <repository>
-            <id>scriptengines</id>
-            <name>ScriptEngines Repository</name>
-            <url>http://scriptengines.googlecode.com/svn/m2-repo</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>     
-                <enabled>false</enabled>
-            </snapshots>     
         </repository>
     </repositories>
 </project>
