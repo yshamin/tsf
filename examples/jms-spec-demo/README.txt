@@ -10,30 +10,63 @@ continuing.
 This demo uses ActiveMQ as the JMS implementation for 
 illustration purposes only. 
 
-Prerequisite
-------------
 
-If your environment already includes cxf-manifest.jar on the
-CLASSPATH, and the JDK and ant bin directories on the PATH
-it is not necessary to set the environment as described in
-the samples directory README.  If your environment is not
-properly configured, or if you are planning on using wsdl2java,
-javac, and java to build and run the demos, you must set the
-environment.
-
-
-Building and running the demo using maven
+Building the Demo
 ---------------------------------------
   
 Using either UNIX or Windows:
 
-    mvn install (this will build the demo)
+    mvn install
 
-    In separate command windows/shells:
-    mvn -Pjms.broker
-    cd service ; mvn exec:run
-    cd client ; mvn exec:run
 
+Running the JMS Broker
+---------------------------------------
+The sample requires a JMS broker to be running.  There are two
+ways to get a JMS broker running:
+
+ * From the command line
+     In separate command windows/shells:
+     mvn -Pjms.broker
+
+ * From within the OSGi container
+     From the OSGi command line, run:
+         activemq:create-broker 
+     That will create a new broker broker with the defaults and 
+     will then start it.
+
+
+Starting the Service
+---------------------------------------
+  * From the command line:
+     cd service ; mvn exec:java
+
+  * From within the OSGi container
+     From the OSGi command line, run:
+	install mvn:com.talend.sf.examples.jms_spec/jms-spec-common/1.0
+        install mvn:com.talend.sf.examples.jms_spec/jms-spec-server/1.0
+     That should print out the bundle ID for the server bundle.  From 
+     the OSGi command line, then run
+        start 115
+     where 115 is the bundle ID number that was printed during install.
+
+
+Running the Client
+---------------------------------------
+  * From the command line:
+     cd client ; mvn exec:java
+  * From within the OSGi container
+     From the OSGi command line, run:
+	install mvn:com.talend.sf.examples.jms_spec/jms-spec-common/1.0
+        install mvn:com.talend.sf.examples.jms_spec/jms-spec-client/1.0
+     That should print out the bundle ID for the server bundle.  From 
+     the OSGi command line, then run
+        start 115
+     where 115 is the bundle ID number that was printed during install.
+
+
+
+Cleaning up
+---------------------------------------
 To remove the code generated from the WSDL file and the .class
 files, run "mvn clean".
 

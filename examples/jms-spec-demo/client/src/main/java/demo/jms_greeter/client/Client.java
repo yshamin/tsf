@@ -33,13 +33,14 @@ public final class Client {
     private static final QName PORT_NAME =
         new QName("http://cxf.apache.org/jms_greeter", "GreeterPort");
 
-    private Client() {
+    public Client() throws Exception {
+        this(new String[0]);
     }
+    public Client(String args[]) throws Exception {
 
-    public static void main(String[] args) throws Exception {
         URL wsdl = null;
         if (args.length == 0) {
-            wsdl = Client.class.getResource("/wsdl/jms_greeter.wsdl");
+            wsdl = Client.class.getResource("/jms-spec-wsdl/jms_greeter.wsdl");
         }
 
         JMSGreeterService service = new JMSGreeterService(wsdl, SERVICE_NAME);
@@ -57,7 +58,10 @@ public final class Client {
         greeter.greetMeOneWay(System.getProperty("user.name"));
         System.out.println("No response from server as method is OneWay");
         System.out.println();
+    }
 
+    public static void main(String[] args) throws Exception {
+        new Client(args);
         System.exit(0);
     }
 }

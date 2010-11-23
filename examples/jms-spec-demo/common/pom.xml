@@ -39,6 +39,7 @@
 					<instructions>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Require-Bundle>org.apache.cxf.bundle</Require-Bundle>
+                        <Export-Package>jms-spec-wsdl,org.apache.cxf.jms_greeter</Export-Package>
 					</instructions>
 				</configuration>
 			</plugin>
@@ -53,7 +54,7 @@
                         <configuration>
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>${basedir}/src/main/resources/wsdl/jms_greeter.wsdl</wsdl>
+                                    <wsdl>${basedir}/src/main/resources/jms-spec-wsdl/jms_greeter.wsdl</wsdl>
                                 </wsdlOption>
                             </wsdlOptions>
                         </configuration>
