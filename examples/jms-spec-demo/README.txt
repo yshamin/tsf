@@ -4,8 +4,24 @@ SOAP/JMS Specification Transport Demo using Document-Literal Style
 This sample demonstrates use of the Document-Literal style 
 binding over SOAP/JMS Specification Transport.
 
-Please review the README in the samples directory before
-continuing.
+This sample consists of 3 parts:
+common/   - This directory contains the code that is common
+            for both the client and the server.  It contains
+	    the WSDL and the artifacts that are generated 
+	    from that WSDL.  The WSDL uses the SOAP/JMS 
+	    specification extensors and URL to define
+	    how to connect to the broker and the various
+	    QOS parameters to use.
+
+service/  - This is the service.   At startup, it will
+            connect to the broker based on the information
+	    in the WSDL and register the greeter service.
+
+client/   - This is a sample client application that uses
+            the JAX-WS API's to create a proxy client and
+	    makes several calls with it.
+
+
 
 This demo uses ActiveMQ as the JMS implementation for 
 illustration purposes only. 
