@@ -113,6 +113,9 @@
         <fileSet>
             <directory>${basedir}/../examples</directory>
             <outputDirectory>/examples</outputDirectory>
+            <excludes>
+                <exclude>**/target/**</exclude>
+            </excludes>
         </fileSet>
 
 
