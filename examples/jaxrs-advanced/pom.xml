@@ -27,8 +27,9 @@
 
    <modules>
       <module>common</module>
+      <module>service</module>
+      <module>war</module>
       <module>client</module>
-      <module>service-war</module>
    </modules>
    
 </project>

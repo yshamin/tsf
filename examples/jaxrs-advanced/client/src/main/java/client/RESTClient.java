@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -22,14 +23,28 @@ import common.PersonService;
  *  clients and JAX-RS server providing multiple services (PersonService and SearchService)
  */
 public final class RESTClient {
+	
+	private static String PORT_PROPERTY = "http.port";
+	
+	private static String HTTP_PORT;
+	static {
+		Properties props = new Properties();
+		try {
+		    props.load(RESTClient.class.getResourceAsStream("/client.properties"));
+		} catch (Exception ex) {
+		    throw new RuntimeException("client.properties resource is not available");
+		}
+		HTTP_PORT = props.getProperty(PORT_PROPERTY);
+	} 
+	
     public static void main (String[] args) throws Exception {
     	
     	// uses CXF JAX-RS WebClient
-    	usePersonService();
+    	usePersonService(HTTP_PORT);
     	// uses CXF JAX-RS WebClient
-    	useSearchService();
+    	useSearchService(HTTP_PORT);
     	// uses a basic proxy
-    	useSimpleProxy();
+    	useSimpleProxy(HTTP_PORT);
     } 
     
     /**
@@ -42,12 +57,12 @@ public final class RESTClient {
      * Additionally it can help with adding the information about new children 
      * to existing persons and update the age of the current Person
      */
-    private static void usePersonService() throws Exception {
+    private static void usePersonService(String port) throws Exception {
     	
     	System.out.println("Using a Web Client...");
     	
     	// A single web client will be used to retrieve all the information
-    	final String personServiceURI = "http://localhost:8080/personservice/main";
+    	final String personServiceURI = "http://localhost:" + port + "/personservice/main";
     	WebClient wc = WebClient.create(personServiceURI);
     	
     	// Get the list of all persons
@@ -163,11 +178,11 @@ public final class RESTClient {
      * this service also verifies that the JAX-RS server is capable of supporting 
      * multiple root resource classes 
      */
-    private static void useSearchService() throws Exception {
+    private static void useSearchService(String port) throws Exception {
     	
     	System.out.println("Searching...");
     	
-    	WebClient wc = WebClient.create("http://localhost:8080/personservice/search");
+    	WebClient wc = WebClient.create("http://localhost:" + port + "/personservice/search");
     	wc.accept(MediaType.APPLICATION_XML);
     	wc.query("name", "Fred", "Lorraine");
         PersonCollection persons = wc.get(PersonCollection.class);
@@ -189,11 +204,11 @@ public final class RESTClient {
      * and response status and headers can also be checked. HTTP response errors can be
      * converted into typed exceptions. 
      */
-    private static void useSimpleProxy() {
+    private static void useSimpleProxy(String port) {
     	
     	System.out.println("Using a simple JAX-RS proxy to get all the persons...");
     	
-    	String webAppAddress = "http://localhost:8080/personservice";
+    	String webAppAddress = "http://localhost:" + port + "/personservice";
     	PersonService proxy = JAXRSClientFactory.create(webAppAddress, PersonService.class);
     	
     	Collection<Person> persons = proxy.getAll();

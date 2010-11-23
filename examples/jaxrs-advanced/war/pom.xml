@@ -10,21 +10,16 @@
       <relativePath>..</relativePath>
    </parent>
    <artifactId>jaxrs-advanced-service-war</artifactId>
-   <name>Advanced JAX-RS Example REST Resource</name>
+   <name>Advanced JAX-RS Advanced Example War</name>
    <packaging>war</packaging>
    <url>http://maven.apache.org</url>
 
    <dependencies>
      <dependency>
        <groupId>com.talend.sf.examples</groupId>
-       <artifactId>jaxrs-advanced-common</artifactId>
+       <artifactId>jaxrs-advanced-service-bundle</artifactId>
        <version>1.0</version>
      </dependency>
-     <dependency>
-        <groupId>wsdl4j</groupId>
-        <artifactId>wsdl4j</artifactId>
-        <version>1.6.2</version>
-    </dependency>
 
    </dependencies>
 
