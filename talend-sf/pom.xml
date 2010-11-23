@@ -888,14 +888,10 @@
                                 <descriptor>file:${basedir}/target/classes/features.xml</descriptor>
                             </descriptors>
                             <features>
-                                <!--feature>activemq</feature>
                                 <feature>activemq-blueprint</feature>
-                                <feature>activemq-broker</feature-->
+                                <feature>activemq-spring</feature>
                                 <feature>cxf</feature>
                                 <feature>cxf-jaxrs</feature>
-                                <feature>cxf-osgi</feature>
-                                <!--feature>camel</feature>
-                                <feature>war</feature-->
                             </features>
                             <repository>target/features-repo</repository>
                         </configuration>
