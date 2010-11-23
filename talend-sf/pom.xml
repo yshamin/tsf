@@ -1043,6 +1043,17 @@
                 <enabled>false</enabled>
             </releases>
         </repository>
+        <repository>
+            <id>scriptengines</id>
+            <name>ScriptEngines Repository</name>
+            <url>http://scriptengines.googlecode.com/svn/m2-repo</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>     
+                <enabled>false</enabled>
+            </snapshots>     
+        </repository>
     </repositories>
 </project>
 
