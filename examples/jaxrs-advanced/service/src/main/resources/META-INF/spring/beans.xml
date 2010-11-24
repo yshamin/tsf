@@ -11,7 +11,7 @@
 
      <import resource="classpath:META-INF/cxf/cxf.xml" />
      <import resource="classpath:META-INF/cxf/cxf-extension-jaxrs-binding.xml" />
-     <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+     <import resource="classpath:META-INF/cxf/osgi/cxf-extension-osgi.xml" />
 
      <!-- JAX-RS endpoint with two root resource classes -->
      <jaxrs:server id="personService" address="/personservice">
