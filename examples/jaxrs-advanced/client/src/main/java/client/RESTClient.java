@@ -38,27 +38,16 @@ public final class RESTClient {
 		HTTP_PORT = props.getProperty(PORT_PROPERTY);
 	} 
 	
-    public static void main (String[] args) throws Exception {
-    
-    	int port = getPort();
-    	
-    	// uses CXF JAX-RS WebClient
-    	usePersonService(port);
-    	// uses CXF JAX-RS WebClient
-    	useSearchService(port);
-    	// uses a basic proxy
-    	useSimpleProxy(port);
-    } 
-
-    private static int getPort() { 
-    	try {
-    		return Integer.valueOf(HTTP_PORT);
-    	} catch (NumberFormatException ex) {
-    		// ignore
-    	}
-    	return DEFAULT_PORT_VALUE;
-    }
-    
+	int port;
+	
+	public RESTClient() {
+	    this(getPort());	
+	}
+	
+    public RESTClient(int port) {
+	    this.port = port;	
+	}
+	
     /**
      * PersonService provides information about all the persons it knows about, 
      * about individual persons and their relatives :
@@ -69,7 +58,7 @@ public final class RESTClient {
      * Additionally it can help with adding the information about new children 
      * to existing persons and update the age of the current Person
      */
-    private static void usePersonService(int port) throws Exception {
+    public void usePersonService() throws Exception {
     	
     	System.out.println("Using a Web Client...");
     	
@@ -190,7 +179,7 @@ public final class RESTClient {
      * this service also verifies that the JAX-RS server is capable of supporting 
      * multiple root resource classes 
      */
-    private static void useSearchService(int port) throws Exception {
+    private void useSearchService() throws Exception {
     	
     	System.out.println("Searching...");
     	
@@ -216,7 +205,7 @@ public final class RESTClient {
      * and response status and headers can also be checked. HTTP response errors can be
      * converted into typed exceptions. 
      */
-    private static void useSimpleProxy(int port) {
+    public void useSimpleProxy() {
     	
     	System.out.println("Using a simple JAX-RS proxy to get all the persons...");
     	
@@ -230,19 +219,40 @@ public final class RESTClient {
     	}
     }
     
-    private static Person getPerson(WebClient wc) {
+    private Person getPerson(WebClient wc) {
     	Person person = wc.get(Person.class);
         System.out.println("ID " + person.getId() + " : " + person.getName() + ", age : " + person.getAge());
         return person;
     }
     
-    private static List<Person> getPersons(WebClient wc) {
+    private List<Person> getPersons(WebClient wc) {
     	List<Person> persons = new ArrayList<Person>(wc.getCollection(Person.class));
         for (Person person : persons) {
             System.out.println(
             	"ID " + person.getId() + " : " + person.getName() + ", age : " + person.getAge());
         }
         return persons;
+    }
+    
+    public static void main (String[] args) throws Exception {
+        
+    	RESTClient client = new RESTClient();
+    	
+    	// uses CXF JAX-RS WebClient
+    	client.usePersonService();
+    	// uses CXF JAX-RS WebClient
+    	client.useSearchService();
+    	// uses a basic proxy
+    	client.useSimpleProxy();
+    }
+    
+    private static int getPort() { 
+    	try {
+    		return Integer.valueOf(HTTP_PORT);
+    	} catch (NumberFormatException ex) {
+    		// ignore
+    	}
+    	return DEFAULT_PORT_VALUE;
     }
 }
 

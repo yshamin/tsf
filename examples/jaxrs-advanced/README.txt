@@ -11,35 +11,63 @@ The demo shows some of the major features the JAX-RS 1.1 specification [1] and A
 - How to use JAX-RS UriInfo[2] and UriBuilder[2] for returing the links to newly created resources
 - JAX-RS ExceptionMappers[2] for handling exceptions thrown from the application code
 
-This demo is a continious work in progress and the list of demonstrated features will be enhanced.
-
 Additionally HTTP Centric and Proxy-based Apache CXF JAX-RS client API is demonstrated.
 
 [1] http://jcp.org/aboutJava/communityprocess/mrel/jsr311/index.html
 [2] https://jsr311.dev.java.net/nonav/releases/1.1/index.html
 
-Building and running the demo using Maven
+Building the Demo
 ---------------------------------------
+
+This sample consists of 3 parts:
+common/   - This directory contains the code that is common
+            for both the client and the server. 
+            
+service/  - This is the JAX-RS service with multiple root resources packaged as an OSGI bundle.
+             
+
+war/      - This module creates a WAR archive containing the code from common and service modules.   
+
+client/   - This is a sample client application that uses
+            the CXF JAX-RS API to create HTTP-centric and proxy clients and
+	    makes several calls with them.
+
 
 From the base directory of this sample (i.e., where this README file is
 located), the maven pom.xml file can be used to build and run the demo. 
 
-The demo contains three modules :
-- common
-- server-war
-- client
 
-Running 'mvn install' will prepare the demo. Next, follow these steps :
+Using either UNIX or Windows:
 
-1. Go to 'server-war' and do
+    mvn install
 
-mvn jetty:run
+Running this command will build the demo and create a WAR archive and an OSGI bundle 
+for deploying the service either to servlet or OSGI containers.
 
-This will create a war and deploy it into Jetty.
+Deploying the service
+---------------------------------------
+ * To the servlet container
 
-2. Go to 'client' and run the client
+    cd war; mvn jetty:run
 
-mvn exec:java
+ * To the OSGI container
+
+    From the OSGi command line, run:
+	install mvn:com.talend.sf.examples.jaxrs-advanced-common/jaxrs-advanced-common/1.0
+        install mvn:com.talend.sf.examples.jaxrs-advanced-service-bundle/jaxrs-advanced-service-bundle/1.0
+     That should print out the bundle IDs for the common and server bundles.  From 
+     the OSGi command line, then start the installed bundles, for example
+        start 115
+     where 115 is the bundle ID number that was printed during install.
+
+Running the client
+---------------------------------------
+
+ * From the command line
+   - cd client
+   - mvn exec:java
+     or
+   - mvn install -Dhttp.port=8181
 
 Demo Desciption
 ---------------
@@ -63,6 +91,8 @@ multiple root resource classes.
 RESTful client uses CXF JAX-RS WebClient to traverse all the information about an individual Person and also adds a new child.
 It also shows how to use a simple proxy.
 
-Please check the comment in the code for a detailed description on how client invocations are made and 
+Finally a simple proxy is created and is used to make the calls.
+
+Please check the comment in the code for a detailed description on how client calls are made and 
 how they are processed on the server side.
 
