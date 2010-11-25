@@ -1,0 +1,75 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>com.talend.sf.examples</groupId>
+      <artifactId>jaxrs-jaxws-java-first-example</artifactId>
+      <version>1.0</version>
+      <relativePath>..</relativePath>
+   </parent>
+   <artifactId>jaxrs-jaxws-java-first-service</artifactId>
+   <name>JAX-RS JAX-WS Java First Service</name>
+   <packaging>bundle</packaging>
+   <url>http://maven.apache.org</url>
+
+   <dependencies>
+     <dependency>
+       <groupId>com.talend.sf.examples</groupId>
+       <artifactId>jaxrs-jaxws-java-first-common</artifactId>
+       <version>1.0</version>
+     </dependency>
+   </dependencies>
+
+   <build>
+      <plugins>
+        <plugin>
+	   <groupId>org.apache.felix</groupId>
+	   <artifactId>maven-bundle-plugin</artifactId>
+	   <configuration>
+	      <instructions>
+		<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+		<Import-Package>
+                   common,
+                   javax.wsdl,
+		   javax.xml.bind,
+		   javax.xml.bind.annotation,
+                   javax.xml.ws,
+		   javax.ws.rs,
+                   javax.ws.rs.ext,
+                   javax.ws.rs.core,
+ 		   META-INF.cxf,
+		   META-INF.cxf.osgi,
+                   org.apache.cxf.binding,
+		   org.apache.cxf.bus,
+                   org.apache.cxf.buslifecycle, 
+		   org.apache.cxf.bus.spring,
+		   org.apache.cxf.bus.resource,
+                   org.apache.cxf.catalog,
+                   org.apache.cxf.configuration.spring,
+                   org.apache.cxf.endpoint,
+                   org.apache.cxf.jaxrs.utils,
+                   org.apache.cxf.jaxrs.provider,
+                   org.apache.cxf.headers,  
+                   org.apache.cxf.phase,
+		   org.apache.cxf.resource,
+                   org.apache.cxf.service.factory,
+		   org.apache.cxf.transport,   
+                   org.apache.cxf.transport.http,
+		   org.apache.cxf.transport.http_osgi,
+                   org.apache.cxf.workqueue,
+                   org.apache.cxf.wsdl11,
+		   org.springframework.beans.factory.config,
+                </Import-Package>
+		<Export-Package>
+                   service
+                </Export-Package>
+	     </instructions>
+	   </configuration>
+	</plugin>
+    </plugins>
+  </build>
+   
+</project>
+

@@ -15,8 +15,9 @@
     </properties>
 
     <modules>
-        <module>jaxrs-advanced</module>
         <module>jaxrs-intro</module>
+        <module>jaxrs-advanced</module>
+        <module>jaxrs-jaxws-java-first</module>
     </modules>
 
     <build>
