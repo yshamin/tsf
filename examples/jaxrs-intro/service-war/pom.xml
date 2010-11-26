@@ -8,7 +8,7 @@
       <artifactId>RESTServiceSample</artifactId>
       <version>1.0-SNAPSHOT</version>
    </parent>
-   <artifactId>service-war</artifactId>
+   <artifactId>jaxrs-intro-service-war</artifactId>
    <name>RESTServiceSample REST endpoint</name>
    <packaging>war</packaging>
    <url>http://maven.apache.org</url>

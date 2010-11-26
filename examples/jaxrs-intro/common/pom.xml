@@ -10,7 +10,7 @@
       <relativePath>..</relativePath>
    </parent>
    <artifactId>jaxrs-intro-common</artifactId>
-   <name>Advanced JAX-RS Example Common</name>
+   <name>Intro JAX-RS Example Common</name>
    <packaging>jar</packaging>
    <url>http://maven.apache.org</url>
 
