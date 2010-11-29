@@ -29,6 +29,10 @@ public class PersonInfoStorage {
 	public Long addPerson(Person person) {
 		long id = ID.incrementAndGet();
 		person.setId(id);
+		
+		System.out.println("Adding new person : name - " + person.getName()
+				+ ", id - " + id);
+		
 		persons.put(id, person);
 		return id;
 	}
