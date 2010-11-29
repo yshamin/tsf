@@ -13,7 +13,7 @@ import org.apache.cxf.jaxrs.client.WebClient;
 import common.Person;
 
 public final class RESTClient {
-   private static String urlStem = "http://localhost:8080/membership/membershipservice/members/";
+   private static String urlStem = "http://localhost:8080/services/membershipservice/members/";
    
    public static void main (String[] args) throws Exception {
         getMember(1);

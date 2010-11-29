@@ -14,5 +14,21 @@
    <packaging>jar</packaging>
    <url>http://maven.apache.org</url>
 
+   <build>
+      <plugins>
+        <plugin>
+	   <groupId>org.apache.felix</groupId>
+	   <artifactId>maven-bundle-plugin</artifactId>
+	   <configuration>
+	      <instructions>
+		<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+		<Import-Package>*</Import-Package>
+		<Export-Package>common</Export-Package>
+	     </instructions>
+	   </configuration>
+	</plugin>
+    </plugins>
+  </build>
+
 </project>
 

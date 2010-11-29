@@ -14,16 +14,6 @@
 
    <dependencies>
       <dependency>
-         <groupId>commons-httpclient</groupId>
-         <artifactId>commons-httpclient</artifactId>
-         <version>3.1</version>
-      </dependency>
-      <dependency>
-         <groupId>org.apache.geronimo.specs</groupId>
-         <artifactId>geronimo-servlet_3.0_spec</artifactId>
-         <version>1.0</version>
-      </dependency>
-      <dependency>
          <groupId>com.talend.sf.examples</groupId>
          <artifactId>jaxrs-intro-common</artifactId>
          <version>1.0</version>
