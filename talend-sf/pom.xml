@@ -23,8 +23,8 @@
         <aries.version>0.2-incubating</aries.version>
         <!--felix.fileinstall.version>3.0.2</felix.fileinstall.version>
         <felix.prefs.version>1.0.4</felix.prefs.version-->
-        <karaf.version>2.1.1</karaf.version>
-        <karaf.osgi.version>2.1.1</karaf.osgi.version>
+        <karaf.version>2.1.2</karaf.version>
+        <karaf.osgi.version>2.1.2</karaf.osgi.version>
         <osgi.compendium.version>4.2.0</osgi.compendium.version>
         <osgi.core.version>4.2.0</osgi.core.version>
 

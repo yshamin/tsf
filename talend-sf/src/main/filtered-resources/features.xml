@@ -63,6 +63,7 @@
         <bundle start-level='20'>mvn:org.codehaus.woodstox/stax2-api/${woodstox.stax2-api.version}</bundle>
         <bundle start-level='20'>mvn:org.codehaus.woodstox/woodstox-core-asl/${woodstox.version}</bundle>
 
+        <feature version="${karaf.version}">http</feature>
         <feature version="${spring.version}">spring</feature>
         <feature version="${spring.osgi.version}">cxf-spring-dm</feature>
 
