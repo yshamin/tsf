@@ -87,8 +87,6 @@
         <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-codec/${commons-codec.bundle.version}</bundle>
         <bundle>mvn:org.codehaus.jettison/jettison/${jettison.version}</bundle>
         <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jdom/${jdom.bundle.version}</bundle>
-        <bundle>mvn:org.apache.ws.commons.axiom/axiom-impl/${axiom.version}</bundle>
-        <bundle>mvn:org.apache.ws.commons.axiom/axiom-api/${axiom.version}</bundle>
         <bundle>mvn:org.eclipse.jetty/jetty-server/${jetty.version}</bundle>
         <bundle>mvn:org.eclipse.jetty/jetty-continuation/${jetty.version}</bundle>
         <bundle>mvn:org.eclipse.jetty/jetty-io/${jetty.version}</bundle>
@@ -98,11 +96,15 @@
     </feature>
 
     <feature name="cxf-jaxrs" version="${cxf.version}">
-        <!--bundle>mvn:org.apache.abdera/abdera-i18n/${abdera.version}</bundle>
+        <!--
+        <bundle>mvn:org.apache.abdera/abdera-i18n/${abdera.version}</bundle>
         <bundle>mvn:org.apache.abdera/abdera-core/${abdera.version}</bundle>
         <bundle>mvn:org.apache.abdera/abdera-parser/${abdera.version}</bundle>
         <bundle>mvn:org.apache.abdera/abdera-extensions-main/${abdera.version}</bundle>
-        <bundle>mvn:org.apache.abdera/abdera-extensions-json/${abdera.version}</bundle-->
+        <bundle>mvn:org.apache.abdera/abdera-extensions-json/${abdera.version}</bundle>
+        <bundle>mvn:org.apache.ws.commons.axiom/axiom-impl/${axiom.version}</bundle>
+        <bundle>mvn:org.apache.ws.commons.axiom/axiom-api/${axiom.version}</bundle>
+        -->
 
         <feature version="${cxf.version}">cxf</feature>
         <bundle>mvn:org.codehaus.jettison/jettison/${jettison.version}</bundle>
