@@ -49,7 +49,7 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
                     <configuration>
-                        <mainClass>client.JmsHttpClient</mainClass>
+                        <mainClass>client.JMSHttpClient</mainClass>
                     </configuration>
                 </plugin>
             </plugins>

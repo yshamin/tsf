@@ -22,7 +22,12 @@
 	   <configuration>
 	      <instructions>
 		<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-		<Import-Package>*</Import-Package>
+		<Import-Package>
+		   javax.xml.bind,
+		   javax.xml.bind.annotation,
+		   javax.xml.bind.annotation.adapters,
+		   *
+		 </Import-Package>
 		<Export-Package>common</Export-Package>
 	     </instructions>
 	   </configuration>

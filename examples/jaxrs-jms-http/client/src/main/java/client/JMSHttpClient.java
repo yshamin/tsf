@@ -58,7 +58,7 @@ public final class JMSHttpClient {
 
     public void useWebClient() {
     	System.out.println("Using WebClient to get the book with id 123");
-    	WebClient client = WebClient.create("http://localhost:" + port + "/services/bookstore");
+    	WebClient client = WebClient.create("http://localhost:" + port + "/services/bookstore/");
     	Book book = client.post(new Book("HTTP"), Book.class);
     	System.out.println(book.getId() + ":" + book.getName());
     }

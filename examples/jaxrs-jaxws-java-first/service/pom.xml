@@ -35,6 +35,7 @@
                    javax.wsdl,
 		   javax.xml.bind,
 		   javax.xml.bind.annotation,
+		   javax.xml.bind.annotation.adapters,
                    javax.xml.namespace,
                    javax.xml.ws,
                    javax.xml.ws.soap, 
@@ -54,6 +55,8 @@
                    org.apache.cxf.endpoint,
                    org.apache.cxf.jaxrs.utils,
                    org.apache.cxf.jaxrs.provider,
+                   org.apache.cxf.jaxws,
+                   org.apache.cxf.jaxws.context,
                    org.apache.cxf.headers,  
                    org.apache.cxf.phase,
 		   org.apache.cxf.resource,
@@ -63,6 +66,10 @@
 		   org.apache.cxf.transport.http_osgi,
                    org.apache.cxf.workqueue,
                    org.apache.cxf.wsdl11,
+                   org.apache.cxf.tools.common.extensions.soap,
+                   org.apache.cxf.binding.soap,
+                   org.apache.cxf.binding.soap.spring,
+                   org.apache.cxf.jaxws.spring,
 		   org.springframework.beans.factory.config,
                 </Import-Package>
 		<Export-Package>
