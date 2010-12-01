@@ -87,21 +87,25 @@ public class JMSHttpBookStore {
         
     	printRequestTransport();
     	
-    	Context ctx = getContext();
-        ConnectionFactory factory = (ConnectionFactory)ctx.lookup("ConnectionFactory");
-        Destination replyToDestination = (Destination)ctx.lookup("dynamicQueues/test.jmstransport.response");
-                
-        Connection connection = null;
-        try {
+    	Connection connection = null;
+    	try {
+    		Context ctx = getContext();
+            ConnectionFactory factory = (ConnectionFactory)ctx.lookup("ConnectionFactory");
+            Destination replyToDestination = (Destination)ctx.lookup("dynamicQueues/test.jmstransport.response");
             connection = factory.createConnection();
             connection.start();
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             postOneWayBook(session, replyToDestination, book);
             session.close();
+        } catch (Exception ex) {
+        	ex.printStackTrace();
+        	throw ex;
         } finally {
             try {
-                connection.stop();
-                connection.close();
+            	if (connection != null) {
+	                connection.stop();
+	                connection.close();
+            	}
             } catch (JMSException ex) {
                 // ignore
             }
@@ -109,11 +113,17 @@ public class JMSHttpBookStore {
     }
     
     private Context getContext() throws Exception {
-        Properties props = new Properties();
-        props.setProperty(Context.INITIAL_CONTEXT_FACTORY,
-                          "org.apache.activemq.jndi.ActiveMQInitialContextFactory");
-        props.setProperty(Context.PROVIDER_URL, "tcp://localhost:61616");
-        return new InitialContext(props);
+    	ClassLoader loader = Thread.currentThread().getContextClassLoader();
+    	try {
+    		Properties props = new Properties();
+	        props.setProperty(Context.INITIAL_CONTEXT_FACTORY,
+	                          "org.apache.activemq.jndi.ActiveMQInitialContextFactory");
+	        props.setProperty(Context.PROVIDER_URL, "tcp://localhost:61616");
+	        Thread.currentThread().setContextClassLoader(this.getClass().getClassLoader());
+	        return new InitialContext(props);
+    	} finally {
+    		Thread.currentThread().setContextClassLoader(loader);
+    	}
         
     }
     
