@@ -154,7 +154,7 @@
         <tranql.version>1.6</tranql.version>
         <woodstox.version>4.0.8</woodstox.version>
         <woodstox.stax2-api.version>3.0.2</woodstox.stax2-api.version>
-        <wss4j.version>1.5.9</wss4j.version>
+        <wss4j.version>1.5.10</wss4j.version>
         <xbean.version>3.7</xbean.version>
         <xmlschema.version>1.4.7</xmlschema.version>
 
