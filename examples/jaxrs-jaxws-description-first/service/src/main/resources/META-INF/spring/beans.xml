@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+      xmlns:jaxws="http://cxf.apache.org/jaxws"
+      xmlns:soap="http://cxf.apache.org/bindings/soap"
+      xsi:schemaLocation="
+         http://www.springframework.org/schema/beans 
+         http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+         http://cxf.apache.org/jaxrs
+         http://cxf.apache.org/schemas/jaxrs.xsd
+         http://cxf.apache.org/jaxws
+         http://cxf.apache.org/schemas/jaxws.xsd">
+
+     <import resource="classpath:META-INF/cxf/cxf.xml" />
+     <import resource="classpath:META-INF/cxf/cxf-extension-jaxrs-binding.xml" />
+     <import resource="classpath:META-INF/cxf/cxf-extension-jaxws.xml" />
+     <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+     <import resource="classpath:META-INF/cxf/osgi/cxf-extension-osgi.xml" />
+
+     <jaxrs:server id="hello_rest" address="/hello-rest">
+       <jaxrs:serviceBeans>
+         <ref bean="hello-world-bean"/>
+       </jaxrs:serviceBeans>		   
+     </jaxrs:server>
+
+     <jaxws:endpoint xmlns:s="http://hello.com"
+         serviceName="s:HelloWorld"
+         endpointName="s:HelloWorldPort"
+         id="hello_soap"
+         implementor="#hello-world-bean"
+         address="/hello-soap"/>      
+
+     <bean id="hello-world-bean" class="service.HelloWorldImpl"/>
+</beans>
+
