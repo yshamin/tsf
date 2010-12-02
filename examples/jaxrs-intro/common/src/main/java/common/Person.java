@@ -12,8 +12,9 @@ import javax.ws.rs.Path;
 public class Person {
     private int id;
     private String name;
+    private int age = -1;
 
-    public int getId() {
+	public int getId() {
         return id;
     }
 
@@ -26,6 +27,12 @@ public class Person {
     	return this;
     }
     
+    @PUT
+    public void updateSelf(Person newData) {
+        this.name = newData.name;
+        this.age = newData.age;        
+    }
+
     @Path("name")
     public String getName() {
         return name;
@@ -37,4 +44,17 @@ public class Person {
     public void setName(String name) {
         this.name = name;
     }
+    
+    @Path("age")
+    public int getAge() {
+		return age;
+	}
+
+    @PUT
+    @Consumes("text/plain")
+    @Path("age")
+	public void setAge(int age) {
+		this.age = age;
+	}
+    
 }

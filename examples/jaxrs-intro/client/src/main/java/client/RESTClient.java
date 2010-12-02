@@ -17,52 +17,57 @@ public final class RESTClient {
    private static String urlStem = "http://localhost:8080/services/members/";
    
    public static void main (String[] args) throws Exception {
-        getMember(1);
+        Person p = getMember(1);
 
+        System.out.println("Updating person name using PUT and .../members/1/name URL:");
         WebClient wc = WebClient.create(urlStem);
         wc.path("1");
         wc.path("name").type("text/plain");
-        Response rc = wc.put("George");              
-        getMember(1);
-        
+        Response resp = wc.put("George".equals(p.getName()) ? "Sam" : "George");              
+        p = getMember(1);
+
+        System.out.println("Updating multiple fields of the person using PUT and .../members/1 URL:");
+        p.setName("Bob");
+        p.setAge(p.getAge() == 40 ? 30 : 40);
+        resp = wc.reset().path("1").put(p);
+        p = getMember(1);
+
+        System.out.println("Creating a new member using POST and .../members/1 URL:");
         Person newMember = new Person();
         newMember.setName("Harry");
-        Response response = wc.reset().post(newMember);
+        newMember.setAge(30);
+        resp = wc.reset().post(newMember);
         
         // POSTS (creates) are expected to return 201 status if successful 
-        if (response.getStatus() != 201) {
+        if (resp.getStatus() != 201) {
         	throw new RuntimeException("Could not add new member.");
         }
         
         //  POSTS (creates) return the new item's URL (containing the server-generated ID)
         //  in the HTTP Location header
-        String location = response.getMetadata().getFirst("Location").toString();
-        System.out.println("New Member location: " + location);        
+        String location = resp.getMetadata().getFirst("Location").toString();
+        System.out.println("New Member location returned from POST: " + location);        
+        System.out.println("Requerying newly added data using above URL:");
         getMember(location);
 
         System.out.println("\n");
         System.exit(0);
     } 
 
-    private static void getMember(int memberNo) throws Exception {
+    private static Person getMember(int memberNo) throws Exception {
        WebClient wc = WebClient.create(urlStem);
        wc.path(memberNo);
        Person p = wc.get(Person.class);
-       System.out.println("Member returned: name = " + p.getName() + "; id = " + p.getId());
+       System.out.println("person ID/Name/Age = " + p.getId() + " / " + p.getName() + " / " + p.getAge());
+       return p;
     }
 
-    private static void getMember(String locationURL) throws Exception {
+    private static Person getMember(String locationURL) throws Exception {
         WebClient wc = WebClient.create(locationURL);
         Person p = wc.get(Person.class);
-        System.out.println("Member returned: name = " + p.getName() + "; id = " + p.getId());
-     }
-
-    private static String getStringFromInputStream(InputStream in) throws Exception {
-        CachedOutputStream bos = new CachedOutputStream();
-        IOUtils.copy(in, bos);
-        in.close();
-        bos.close();
-        return bos.getOut().toString();
+    	System.out.println("person ID/Name/Age = " + p.getId() + " / " + p.getName() + " / " + p.getAge());
+    	return p;
     }
+
 }
 
