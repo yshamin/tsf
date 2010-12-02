@@ -1,24 +1,34 @@
 package service;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.ws.rs.POST;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.POST;
 import javax.ws.rs.core.Response;
+
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import common.Person;
 
-@Path("/membershipservice/members")
+@Path("/members")
 public class MembershipService {
-    int currentId = 0;
-    Map<Integer, Person> members = new HashMap<Integer, Person>();
-
+	/*
+	 * AtomicInteger, ConcurrentHashMap because MembershipService is a singleton
+	 * accessed by multiple requests 
+	 */
+    Map<Integer, Person> members = new ConcurrentHashMap<Integer, Person>();
+    AtomicInteger currentId = new AtomicInteger();
+    
     public MembershipService() {
+    	// seed HashMap with first member
         Person p = new Person();
         p.setName("Bob");
-        p.setId(++currentId);
+        p.setId(currentId.incrementAndGet());
         members.put(p.getId(), p);
     }
 
@@ -36,11 +46,13 @@ public class MembershipService {
 	} 
     
     @POST
+    @Consumes("application/xml")
     public Response addMember(Person person) {
         System.out.println("----invoking addMember, Member name is: " + person.getName());
-        person.setId(++currentId);
+        person.setId(currentId.incrementAndGet());
         members.put(person.getId(), person);
-        return Response.ok(person).build();
+        // param in create() used for generating HTTP Location header so client can know the new item's ID.
+        return Response.created(URI.create("/members/" + person.getId())).build();
     }
 
 }
