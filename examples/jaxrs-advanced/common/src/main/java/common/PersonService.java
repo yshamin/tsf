@@ -11,9 +11,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 /**
- * 
  * This interface describes a JAX-RS root resource.
- * All the JAXRS annotations will be inherited by classes implementing it.
+ * All the JAXRS annotations (except those overridden) will be inherited by classes implementing it.
  */
 @Path("/main")
 public interface PersonService {

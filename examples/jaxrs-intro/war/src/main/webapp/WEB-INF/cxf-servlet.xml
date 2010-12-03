@@ -19,6 +19,6 @@
         </jaxrs:serviceBeans>
      </jaxrs:server>
 
-     <bean id="membershipBean" class="service.MembershipService"/>
+     <bean id="membershipBean" class="service.MembershipServiceImpl"/>
 </beans>
 
