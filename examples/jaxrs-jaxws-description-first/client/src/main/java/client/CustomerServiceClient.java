@@ -19,8 +19,12 @@
 package client;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Collections;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Properties;
 
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
 import org.apache.cxf.jaxrs.client.WebClient;
@@ -29,9 +33,29 @@ import org.apache.cxf.jaxrs.provider.JAXBElementProvider;
 import com.example.customerservice.Customer;
 import com.example.customerservice.CustomerService;
 import com.example.customerservice.CustomerServiceService;
+import com.example.customerservice.CustomerType;
+import com.example.customerservice.NoSuchCustomerException;
 
 public class CustomerServiceClient {
-    protected CustomerServiceClient() {
+	
+	private static final String PORT_PROPERTY = "http.port";
+	private static final int DEFAULT_PORT_VALUE = 8080;
+	
+	private static final String HTTP_PORT;
+	static {
+		Properties props = new Properties();
+		try {
+		    props.load(CustomerServiceClient.class.getResourceAsStream("/client.properties"));
+		} catch (Exception ex) {
+		    throw new RuntimeException("client.properties resource is not available");
+		}
+		HTTP_PORT = props.getProperty(PORT_PROPERTY);
+	} 
+	
+	int port;
+	
+    public CustomerServiceClient() {
+    	port = getPort();
     }
     
     public void useCustomerServiceSoap(String args[]) throws Exception {
@@ -51,33 +75,76 @@ public class CustomerServiceClient {
             customerServiceService = new CustomerServiceService();
         }
 
+        System.out.println("Using SOAP CustomerService");
+                
         CustomerService customerService = customerServiceService.getCustomerServicePort();
-        Customer customer = customerService.getCustomerByName("Barry");
-        System.out.println(customer.getName());
         
+        Customer customer = createCustomer("Barry");
+        customerService.updateCustomer(customer);
+        customer = customerService.getCustomerByName("Barry");
+        System.out.println(customer.getName());
+        try {
+        	customerService.getCustomerByName("John");
+        	throw new RuntimeException("Exception is expected");
+        } catch (NoSuchCustomerException ex) {
+        	System.out.println("NoSuchCustomerException : John");
+        }
     }
     
     public void useCustomerServiceRest(String args[]) throws Exception {
     	JAXBElementProvider provider = new JAXBElementProvider();
         provider.setUnmarshallAsJaxbElement(true);
+        provider.setMarshallAsJaxbElement(true);
         
-        CustomerService service = JAXRSClientFactory.createFromModel(
-        		"http://localhost:8080/services/rest", 
+        CustomerService customerService = JAXRSClientFactory.createFromModel(
+        		"http://localhost:" + port + "/services/rest", 
         		CustomerService.class, 
         		"classpath:/CustomerService-jaxrs.xml", 
         		Collections.singletonList(provider), 
         		null);
         
-        Customer customer = service.getCustomerByName("Smith");
+        System.out.println("Using RESTful CustomerService");
+        
+        Customer customer = createCustomer("Smith");
+        customerService.updateCustomer(customer);
+        
+        customer = customerService.getCustomerByName("Smith");
         System.out.println(customer.getName());
         
+        customer = customerService.getCustomerByName("John");
+        if (customer != null) {
+        	throw new RuntimeException("John should not be found");
+        }
+        System.out.println("Status : " 
+        		+ WebClient.client(customerService).getResponse().getStatus());
+        
+    }
+    
+    private Customer createCustomer(String name) {
+    	Customer cust = new Customer();
+        cust.setName(name);
+        cust.getAddress().add("Pine Street 200");
+        Date bDate = new GregorianCalendar(2009, 01, 01).getTime();
+        cust.setBirthDate(bDate);
+        cust.setNumOrders(1);
+        cust.setRevenue(10000);
+        cust.setTest(new BigDecimal(1.5));
+        cust.setType(CustomerType.BUSINESS);
+        return cust;
+    }
+    
+    private static int getPort() { 
+    	try {
+    		return Integer.valueOf(HTTP_PORT);
+    	} catch (NumberFormatException ex) {
+    		// ignore
+    	}
+    	return DEFAULT_PORT_VALUE;
     }
     
     public static void main(String args[]) throws Exception {
         CustomerServiceClient client = new CustomerServiceClient();
-        System.out.println("Using SOAP CustomerService");
         client.useCustomerServiceSoap(args);
-        System.out.println("Using RESTful CustomerService");
         client.useCustomerServiceRest(args);
         System.exit(0); 
     }

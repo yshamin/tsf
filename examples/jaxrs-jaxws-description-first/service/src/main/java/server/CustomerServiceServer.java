@@ -19,6 +19,9 @@
 
 package server;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.ws.Endpoint;
 
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
@@ -29,7 +32,12 @@ import com.example.customerservice.CustomerService;
 public class CustomerServiceServer {
 
     protected CustomerServiceServer() throws Exception {
-        System.out.println("Starting Server");
+        
+    }
+
+    public static void main(String args[]) throws Exception {
+        
+    	System.out.println("Starting Server");
         CustomerService implementor = new CustomerServiceImpl();
         Endpoint.publish("http://localhost:8080/services/soap",
                                                          implementor);
@@ -39,15 +47,20 @@ public class CustomerServiceServer {
         jaxrsFactory.setModelRef("classpath:/CustomerService-jaxrs.xml");
         jaxrsFactory.setServiceBean(implementor);
         
-        JAXBElementProvider provider = new JAXBElementProvider();
-        provider.setMarshallAsJaxbElement(true);
-        jaxrsFactory.setProvider(provider);
+        List<Object> providers = new ArrayList<Object>();
+        
+        JAXBElementProvider jaxbProvider = new JAXBElementProvider();
+        jaxbProvider.setMarshallAsJaxbElement(true);
+        jaxbProvider.setUnmarshallAsJaxbElement(true);
+        
+        providers.add(jaxbProvider);
+        providers.add(new NoCustomerExceptionMapper());
+        
+        jaxrsFactory.setProviders(providers);
         
         jaxrsFactory.create();
-    }
-
-    public static void main(String args[]) throws Exception {
-        new CustomerServiceServer();
+    	
+    	
         System.out.println("Server ready...");
         Thread.sleep(5 * 60 * 1000);
         System.out.println("Server exiting");

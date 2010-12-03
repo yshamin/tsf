@@ -118,6 +118,8 @@
     </wsdl:input>
       <wsdl:output name="getCustomerByNameResponse" message="tns:getCustomerByNameResponse">
     </wsdl:output>
+    <wsdl:fault name="NoSuchCustomerException" message="tns:NoSuchCustomerException">
+    </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CustomerServiceServiceSoapBinding" type="tns:CustomerService">
@@ -148,6 +150,9 @@
       <wsdl:output name="getCustomerByNameResponse">
         <soap:body use="literal"/>
       </wsdl:output>
+      <wsdl:fault name="NoSuchCustomerException">
+        <soap:fault name="NoSuchCustomerException" use="literal"/>
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="CustomerServiceService">
