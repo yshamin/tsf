@@ -35,7 +35,7 @@
         <bundle>mvn:org.springframework/spring-tx/${spring.version}</bundle>
         <bundle>mvn:org.springframework/spring-web/${spring.version}</bundle>
     </feature>
-    <feature name="cxf-spring-dm" version="${spring.osgi.version}">
+    <feature name="spring-dm" version="${spring.osgi.version}">
         <feature version="${spring.version}">spring</feature>
         <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.cglib/${cglib.bundle.version}</bundle>
         <bundle>mvn:org.springframework.osgi/spring-osgi-io/${spring.osgi.version}</bundle>
@@ -66,7 +66,7 @@
         <feature version="${karaf.version}">http</feature>
         <feature version="${karaf.version}">war</feature>
         <feature version="${spring.version}">spring</feature>
-        <feature version="${spring.osgi.version}">cxf-spring-dm</feature>
+        <feature version="${spring.osgi.version}">spring-dm</feature>
 
         <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.asm/${asm.bundle.version}</bundle>
         <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.neethi/${neethi.bundle.version}</bundle>
