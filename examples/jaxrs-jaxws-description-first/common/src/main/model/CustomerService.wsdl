@@ -25,9 +25,15 @@
 <xs:element name="getCustomerByName" type="tns:getCustomerByName"/>
 <xs:element name="getCustomerByNameResponse" type="tns:getCustomerByNameResponse"/>
 <xs:element name="updateCustomer" type="tns:updateCustomer"/>
+<xs:element name="updateCustomerResponse" type="tns:updateCustomerResponse"/>
 <xs:complexType name="updateCustomer">
 <xs:sequence>
 <xs:element minOccurs="0" name="customer" type="tns:customer"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="updateCustomerResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:customer"/>
 </xs:sequence>
 </xs:complexType>
 <xs:complexType name="customer">
@@ -96,6 +102,10 @@
     <wsdl:part name="parameters" element="tns:updateCustomer">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="updateCustomerResponse">
+    <wsdl:part name="parameters" element="tns:updateCustomerResponse">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="NoSuchCustomerException">
     <wsdl:part name="NoSuchCustomerException" element="tns:NoSuchCustomer">
     </wsdl:part>
@@ -104,6 +114,8 @@
     <wsdl:operation name="updateCustomer">
       <wsdl:input name="updateCustomer" message="tns:updateCustomer">
     </wsdl:input>
+      <wsdl:output name="updateCustomerResponse" message="tns:updateCustomerResponse">
+    </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getCustomersByName">
       <wsdl:input name="getCustomersByName" message="tns:getCustomersByName">
@@ -129,6 +141,9 @@
       <wsdl:input name="updateCustomer">
         <soap:body use="literal"/>
       </wsdl:input>
+      <wsdl:output name="updateCustomerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getCustomersByName">
       <soap:operation soapAction="" style="document"/>

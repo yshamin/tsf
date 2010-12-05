@@ -39,12 +39,16 @@ public class CustomerServiceImpl implements CustomerService {
         return customers;
     }
 
-    public void updateCustomer(Customer newCustomer) {
-    	System.out.println("Updating customer");
-        this.customer = newCustomer;
+    public Customer updateCustomer(Customer newCustomer) {
+    	this.customer = newCustomer;
+    	return customer;
     }
 
 	public Customer getCustomerByName(String name) throws NoSuchCustomerException {
+		
+		if (name.equals("John")) {
+			throw new RuntimeException("John is not available");
+		}
 		
 		if (!name.equals(customer.getName())) {
 			NoSuchCustomer noSuchCustomer = new NoSuchCustomer();

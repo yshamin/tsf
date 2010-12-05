@@ -21,12 +21,17 @@ package client;
 import java.io.File;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Properties;
 
+import javax.ws.rs.core.Response;
+
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
+import org.apache.cxf.jaxrs.client.ResponseExceptionMapper;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.apache.cxf.jaxrs.provider.JAXBElementProvider;
 
@@ -84,10 +89,10 @@ public class CustomerServiceClient {
         customer = customerService.getCustomerByName("Barry");
         System.out.println(customer.getName());
         try {
-        	customerService.getCustomerByName("John");
+        	customerService.getCustomerByName("Smith");
         	throw new RuntimeException("Exception is expected");
         } catch (NoSuchCustomerException ex) {
-        	System.out.println("NoSuchCustomerException : John");
+        	System.out.println("NoSuchCustomerException : Smith");
         }
     }
     
@@ -96,11 +101,23 @@ public class CustomerServiceClient {
         provider.setUnmarshallAsJaxbElement(true);
         provider.setMarshallAsJaxbElement(true);
         
+        List<Object> providers = new ArrayList<Object>();
+        providers.add(provider);
+        providers.add(new ResponseExceptionMapper<NoSuchCustomerException>() {
+
+			@Override
+			public NoSuchCustomerException fromResponse(Response r) {
+				return new NoSuchCustomerException();
+			}
+        	
+        });
+        
+        
         CustomerService customerService = JAXRSClientFactory.createFromModel(
         		"http://localhost:" + port + "/services/rest", 
         		CustomerService.class, 
         		"classpath:/CustomerService-jaxrs.xml", 
-        		Collections.singletonList(provider), 
+        		providers, 
         		null);
         
         System.out.println("Using RESTful CustomerService");
@@ -111,13 +128,19 @@ public class CustomerServiceClient {
         customer = customerService.getCustomerByName("Smith");
         System.out.println(customer.getName());
         
-        customer = customerService.getCustomerByName("John");
+        customer = customerService.getCustomerByName("Barry");
         if (customer != null) {
-        	throw new RuntimeException("John should not be found");
+        	throw new RuntimeException("Barry should not be found");
         }
         System.out.println("Status : " 
         		+ WebClient.client(customerService).getResponse().getStatus());
         
+        try {
+        	customerService.getCustomerByName("John");
+        	throw new RuntimeException("Exception is expected");
+        } catch (NoSuchCustomerException ex) {
+        	System.out.println("NoSuchCustomerException : John");
+        }
     }
     
     private Customer createCustomer(String name) {
