@@ -116,7 +116,7 @@ public class CustomerServiceClient {
         CustomerService customerService = JAXRSClientFactory.createFromModel(
         		"http://localhost:" + port + "/services/rest", 
         		CustomerService.class, 
-        		"classpath:/CustomerService-jaxrs.xml", 
+        		"classpath:/model/CustomerService-jaxrs.xml", 
         		providers, 
         		null);
         

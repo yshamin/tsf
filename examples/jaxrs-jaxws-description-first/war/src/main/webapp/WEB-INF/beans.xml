@@ -19,7 +19,7 @@
      <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
      <jaxrs:server address="/rest" 
-                   modelRef="classpath:/CustomerService-jaxrs.xml">
+                   modelRef="classpath:/model/CustomerService-jaxrs.xml">
        <jaxrs:serviceBeans>
          <ref bean="customer-bean"/>
        </jaxrs:serviceBeans>

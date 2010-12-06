@@ -18,6 +18,7 @@
       <resources>
             <resource>
                 <directory>src/main/model</directory>
+                <targetPath>model</targetPath>
             </resource>
       </resources>
       <plugins>
@@ -33,7 +34,7 @@
 		   javax.xml.bind.annotation.adapters,
 		   *
 		 </Import-Package>
-		<Export-Package>com.example.customerservice</Export-Package>
+		<Export-Package>com.example.customerservice, model</Export-Package>
 	     </instructions>
 	   </configuration>
 	  </plugin>

@@ -44,7 +44,7 @@ public class CustomerServiceServer {
 
         JAXRSServerFactoryBean jaxrsFactory = new JAXRSServerFactoryBean(); 
         jaxrsFactory.setAddress("http://localhost:8080/services/rest");
-        jaxrsFactory.setModelRef("classpath:/CustomerService-jaxrs.xml");
+        jaxrsFactory.setModelRef("classpath:/model/CustomerService-jaxrs.xml");
         jaxrsFactory.setServiceBean(implementor);
         
         List<Object> providers = new ArrayList<Object>();

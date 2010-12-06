@@ -18,19 +18,24 @@
      <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
      <import resource="classpath:META-INF/cxf/osgi/cxf-extension-osgi.xml" />
 
-     <jaxrs:server id="hello_rest" address="/hello-rest">
+     <jaxrs:server address="/rest" 
+                   modelRef="classpath:/model/CustomerService-jaxrs.xml">
        <jaxrs:serviceBeans>
-         <ref bean="hello-world-bean"/>
-       </jaxrs:serviceBeans>		   
+         <ref bean="customer-bean"/>
+       </jaxrs:serviceBeans>
+       <jaxrs:providers>
+         <ref bean="jaxb-provider"/>
+         <bean class="server.NoCustomerExceptionMapper"/>
+       </jaxrs:providers>		   
      </jaxrs:server>
 
-     <jaxws:endpoint xmlns:s="http://hello.com"
-         serviceName="s:HelloWorld"
-         endpointName="s:HelloWorldPort"
-         id="hello_soap"
-         implementor="#hello-world-bean"
-         address="/hello-soap"/>      
+     <bean id="jaxb-provider" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider">
+        <property name="unmarshallAsJaxbElement" value="true"/>
+        <property name="marshallAsJaxbElement" value="true"/>
+     </bean>
 
-     <bean id="hello-world-bean" class="service.HelloWorldImpl"/>
+     <jaxws:endpoint implementor="#customer-bean" address="/soap"/>      
+
+     <bean id="customer-bean" class="server.CustomerServiceImpl"/>
 </beans>
 
