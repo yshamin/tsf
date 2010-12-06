@@ -1,6 +1,8 @@
 package service;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,6 +35,11 @@ public class MembershipServiceImpl implements MembershipService {
         members.put(p.getId(), p);
     }
 
+    @Override
+    public Collection<Person> getAllMembers() {
+    	return new ArrayList<Person>(members.values());
+    }
+    
     @Override
 	public Person getMemberSubresource(int id) {
     	System.out.println("getMemberSubresource called - id = " + id);

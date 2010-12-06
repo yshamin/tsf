@@ -1,8 +1,12 @@
 package common;
 
+import java.util.Collection;
+
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.Produces;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.core.Response;
 
@@ -29,5 +33,13 @@ public interface MembershipService {
     @POST
     @Consumes("application/xml")
     public Response addMember(Person person);
+    
+	/**
+	 * Returns an explicit collection of all members 
+	 * in XML format in response to HTTP GET requests
+	 */
+    @GET
+    @Produces("application/xml")
+    public Collection<Person> getAllMembers();
 	
 }

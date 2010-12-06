@@ -3,6 +3,9 @@ package client;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
@@ -49,6 +52,14 @@ public final class RESTClient {
         System.out.println("New Member location returned from POST: " + location);        
         System.out.println("Requerying newly added data using above URL:");
         getMember(location);
+        
+        //  GET with the .../members/ URI retrieves all members
+        System.out.println("Retrieving list of all members:");
+    	List<Person> persons = new ArrayList<Person>(wc.getCollection(Person.class));
+        for (Person person : persons) {
+            System.out.println(
+            	"ID " + person.getId() + ": " + person.getName() + ", age: " + person.getAge());
+        }
 
         System.out.println("\n");
         System.exit(0);
