@@ -27,6 +27,7 @@ public final class RESTClient {
       wc.path("1");
       wc.path("name").type("text/plain");
       Response resp = wc.put("George".equals(p.getName()) ? "Sam" : "George");
+      // for PUTS, resp.getStatus() returns 204 if success, 404 if ID couldn't be found
       p = getMember(1);
 
       System.out.println("Updating multiple fields of the person using PUT and .../members/1 URL:");
