@@ -87,7 +87,7 @@ public class CustomerServiceClient {
         Customer customer = createCustomer("Barry");
         customerService.updateCustomer(customer);
         customer = customerService.getCustomerByName("Barry");
-        System.out.println(customer.getName());
+        printCustomerDetails(customer);
         try {
         	customerService.getCustomerByName("Smith");
         	throw new RuntimeException("Exception is expected");
@@ -126,7 +126,7 @@ public class CustomerServiceClient {
         customerService.updateCustomer(customer);
         
         customer = customerService.getCustomerByName("Smith");
-        System.out.println(customer.getName());
+        printCustomerDetails(customer);
         
         customer = customerService.getCustomerByName("Barry");
         if (customer != null) {
@@ -143,6 +143,13 @@ public class CustomerServiceClient {
         }
     }
     
+    private void printCustomerDetails(Customer customer) {
+    	System.out.print("Name : " + customer.getName());
+    	System.out.print(", orders : " + customer.getNumOrders());
+    	System.out.print(", shares : " + customer.getShares());
+    	System.out.println();
+    }
+    
     private Customer createCustomer(String name) {
     	Customer cust = new Customer();
         cust.setName(name);
@@ -151,7 +158,7 @@ public class CustomerServiceClient {
         cust.setBirthDate(bDate);
         cust.setNumOrders(1);
         cust.setRevenue(10000);
-        cust.setTest(new BigDecimal(1.5));
+        cust.setShares(new BigDecimal(1.5));
         cust.setType(CustomerType.BUSINESS);
         return cust;
     }
