@@ -56,7 +56,7 @@ Running the client
    - mvn exec:java
 
 By default, the client will use the http port 8080 for constructing the URIs.
-This port value is set during the build in the client.properties resource file. If the server is listening on the alternative port then you can use an 'http.port' system property during the build :
+This port value is set during the build in the client.properties resource file. If the server is listening on the alternative port then you can use an 'http.port' system property during the build:
    
 - mvn install -Dhttp.port=8181
 
