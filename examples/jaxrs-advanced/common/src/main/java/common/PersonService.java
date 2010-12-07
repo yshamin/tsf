@@ -29,9 +29,11 @@ public interface PersonService {
 	 * Sub-resource locator (note the absence of HTTP Verb annotations such as GET).
 	 * It locates a Person instance with a provided id and delegates to it to process
 	 * the request. Note that a Person sub-resource may delegate to another sub-resource.
+	 * This @Path uses a regular expression to match (permit) only numeric IDs from 
+	 * the client in order to have this locator called.
 	 */
-	@Path("{id}")
-	Person getPersonSubresource(@PathParam("id") Long id);
+   @Path("/{id:\\d+}")
+   Person getPersonSubresource(@PathParam("id") Long id);
     
 	/**
 	 * Adds a child to the existing Person. It is expected to return an HTTP 201 status 
