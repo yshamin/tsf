@@ -17,7 +17,7 @@
         <cxf.version>2.3.1</cxf.version>
         <spring.version>3.0.5.RELEASE</spring.version>
         <spring.osgi.version>1.2.0</spring.osgi.version>
-        <activemq.version>5.4.1</activemq.version>
+        <activemq.version>5.4.2</activemq.version>
 
         <!-- OSGi (Karaf, Felix, Aries) -->
         <aries.version>0.2-incubating</aries.version>
@@ -126,7 +126,7 @@
         <xstream.bundle.version>1.3_4</xstream.bundle.version>
 
         <!-- ServiceMix Specs -->
-        <servicemix.specs.version>1.4.0</servicemix.specs.version>
+        <servicemix.specs.version>1.6.0</servicemix.specs.version>
 
 
         <!-- Other Dependencies -->
@@ -990,6 +990,20 @@
                                 <descriptor>src/main/descriptors/bin.xml</descriptor>
                             </descriptors>
                             <appendAssemblyId>false</appendAssemblyId>
+                            <tarLongFileMode>gnu</tarLongFileMode>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>example-package</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/descriptors/examples.xml</descriptor>
+                            </descriptors>
+                            <appendAssemblyId>true</appendAssemblyId>
                             <tarLongFileMode>gnu</tarLongFileMode>
                         </configuration>
                     </execution>
