@@ -10,56 +10,56 @@ import javax.ws.rs.core.UriInfo;
 
 import common.Person;
 import common.PersonService;
+
 /**
  * JAX-RS PersonService root resource
- *
+ * 
  */
 public class PersonServiceImpl implements PersonService {
 
-	private PersonInfoStorage storage;
-	
-	/**
-	 * Thread-safe JAX-RS UriInfo proxy providing the information 
-	 * about the current request URI, etc
-	 */
-	@Context
-	private UriInfo uriInfo;
-	
-	public PersonServiceImpl() {
-	}
-	
-	public void setStorage(PersonInfoStorage storage) {
-		this.storage = storage;
-	}
-	
-	@Override
-	public Person getPersonSubresource(Long id) {
-		return storage.getPerson(id);
-	}
+   private PersonInfoStorage storage;
 
-	@Override
-	public Collection<Person> getAll() {
-		return storage.getAll();
-	}
-	
-	@Override
-	public Response addChild(Long parentId, Person child) {
-		Person parent = storage.getPerson(parentId);
-		if (parent == null) {
-			return Response.status(Response.Status.NOT_FOUND).build();
-		}
-		
-		parent.addChild(child);
-		
-		Long childId = storage.addPerson(child);
-		
-		
-		UriBuilder locationBuilder = uriInfo.getBaseUriBuilder();
-		locationBuilder.path(PersonService.class);
-		URI childLocation = locationBuilder.path("{id}").build(childId);
-		
-		return Response.status(Response.Status.CREATED).location(childLocation).build();
-	}
-	
-	
+   /**
+    * Thread-safe JAX-RS UriInfo proxy providing the information about the
+    * current request URI, etc
+    */
+   @Context
+   private UriInfo uriInfo;
+
+   public PersonServiceImpl() {
+   }
+
+   public void setStorage(PersonInfoStorage storage) {
+      this.storage = storage;
+   }
+
+   @Override
+   public Person getPersonSubresource(Long id) {
+      return storage.getPerson(id);
+   }
+
+   @Override
+   public Collection<Person> getPersons(int start, int size) {
+      return storage.getPersons(start, size);
+   }
+
+   @Override
+   public Response addChild(Long parentId, Person child) {
+      Person parent = storage.getPerson(parentId);
+      if (parent == null) {
+         return Response.status(Response.Status.NOT_FOUND).build();
+      }
+
+      parent.addChild(child);
+
+      Long childId = storage.addPerson(child);
+
+      UriBuilder locationBuilder = uriInfo.getBaseUriBuilder();
+      locationBuilder.path(PersonService.class);
+      URI childLocation = locationBuilder.path("{id}").build(childId);
+
+      return Response.status(Response.Status.CREATED).location(childLocation)
+            .build();
+   }
+
 }

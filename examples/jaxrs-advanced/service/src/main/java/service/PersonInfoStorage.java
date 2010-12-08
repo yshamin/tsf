@@ -40,6 +40,17 @@ public class PersonInfoStorage {
 	public Collection<Person> getAll() {
 		return new ArrayList<Person>(persons.values());
 	}
+
+   public Collection<Person> getPersons(int start, int count) {
+      ArrayList<Person> pList = new ArrayList<Person>(persons.values());
+      if (count == 0  || count < -1 || start < 0 || start > pList.size()) {
+         return null; 
+      } else if (count == -1 || pList.size() < start + count) {
+         count = pList.size() - start;
+      }
+      
+      return pList.subList(start, start+count);
+   }
 	
     private void init() { 
 		

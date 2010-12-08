@@ -212,7 +212,8 @@ public final class RESTClient {
     	String webAppAddress = "http://localhost:" + port + "/services/personservice";
     	PersonService proxy = JAXRSClientFactory.create(webAppAddress, PersonService.class);
     	
-    	Collection<Person> persons = proxy.getAll();
+      // getPersons(a, b): a is zero-based start index, b is number of records to return (-1 for all)
+      Collection<Person> persons = proxy.getPersons(0, -1);
     	for (Iterator<Person> it = persons.iterator(); it.hasNext(); ) {
     		Person person = it.next();
     		System.out.println("ID " + person.getId() + " : " + person.getName() + ", age : " + person.getAge());
@@ -226,7 +227,11 @@ public final class RESTClient {
     }
     
     private List<Person> getPersons(WebClient wc) {
-    	List<Person> persons = new ArrayList<Person>(wc.getCollection(Person.class));
+       // Can limit rows returned with 0-based start index and size (number of records to return, -1 for all)
+       // default (0, -1) returns everything
+       // wc.query("start", "0");
+       // wc.query("size", "2");
+       List<Person> persons = new ArrayList<Person>(wc.getCollection(Person.class));
         for (Person person : persons) {
             System.out.println(
             	"ID " + person.getId() + " : " + person.getName() + ", age : " + person.getAge());

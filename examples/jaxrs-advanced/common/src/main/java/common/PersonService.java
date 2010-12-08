@@ -3,12 +3,16 @@ package common;
 import java.util.Collection;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 /**
  * This interface describes a JAX-RS root resource.
@@ -18,12 +22,20 @@ import javax.ws.rs.core.Response;
 public interface PersonService {
     
 	/**
-	 * Returns an explicit collection of all known persons 
-	 * in either XML or JSON formats in response to HTTP GET requests
+	 * Returns an explicit collection of persons in either XML or JSON formats 
+	 * in response to HTTP GET requests.
+	 * 
+	 * @param start Starting index of the person to return (not necessarily ID)
+	 * @param size  Number of persons to return (-1 to signify all persons)
+	 * 
+	 * If query param not provided, primitive types default to value 0,  
+	 * Objects to null unless overridden via @DefaultValue 
 	 */
 	@GET
 	@Produces({"application/xml", "application/json" })
-	Collection<Person> getAll();
+	Collection<Person> getPersons(@QueryParam("start") int start,
+	      @DefaultValue("-1") @QueryParam("size") int size);
+
 	
 	/**
 	 * Sub-resource locator (note the absence of HTTP Verb annotations such as GET).
