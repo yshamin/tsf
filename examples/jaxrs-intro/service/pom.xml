@@ -48,6 +48,7 @@
                    org.apache.cxf.catalog,
                    org.apache.cxf.configuration.spring,
                    org.apache.cxf.endpoint,
+                   org.apache.cxf.jaxrs,
                    org.apache.cxf.jaxrs.utils,
                    org.apache.cxf.jaxrs.provider,
                    org.apache.cxf.headers,  
