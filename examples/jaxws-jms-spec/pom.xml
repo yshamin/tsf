@@ -18,8 +18,8 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.talend.sf.examples.jms_spec</groupId>
-    <artifactId>jms_spec</artifactId>
+    <groupId>com.talend.sf.examples.jaxws-jms-spec</groupId>
+    <artifactId>jaxws-jms-spec</artifactId>
     <name>SOAP/JMS Transport Specification Demo using Document-Literal Style</name>
     <version>1.0</version>
     <packaging>pom</packaging>
