@@ -1,5 +1,5 @@
 SOAP/JMS Specification Transport Demo using Document-Literal Style
-===============================================
+==================================================================
 
 This sample demonstrates use of the Document-Literal style 
 binding over SOAP/JMS Specification Transport.

@@ -1,17 +1,17 @@
 JAX-RS Advanced Example 
 ===========================
 
-The demo shows some of the major features the JAX-RS 1.1 specification [1] and API [2] provide :
+The demo shows some of the major features that the JAX-RS 1.1 specification[1] and API[2] provide:
 
 - Multiple JAX-RS root resource classes
-- Recursive JAX-RS SubResourses
+- Recursive JAX-RS sub-resources
 - Resource methods consuming and producing data in different formats (XML and JSON)
 - Various HTTP verbs in action
-- How to use JAX-RS Response [2] to return a status, headers and optional entities
+- How to use JAX-RS Response[2] to return status, headers and optional entities
 - How to use JAX-RS UriInfo[2] and UriBuilder[2] for returing the links to newly created resources
 - JAX-RS ExceptionMappers[2] for handling exceptions thrown from the application code
 
-Additionally HTTP Centric and Proxy-based Apache CXF JAX-RS client API is demonstrated.
+Additionally the HTTP Centric and Proxy-based Apache CXF JAX-RS client API is demonstrated.
 
 [1] http://jcp.org/aboutJava/communityprocess/mrel/jsr311/index.html
 [2] https://jsr311.dev.java.net/nonav/releases/1.1/index.html
@@ -21,11 +21,10 @@ Building the Demo
 
 This sample consists of 3 parts:
 common/   - This directory contains the code that is common
-            for both the client and the server. 
+            to both the client and the server. 
             
 service/  - This is the JAX-RS service with multiple root resources packaged as an OSGI bundle.
              
-
 war/      - This module creates a WAR archive containing the code from common and service modules.   
 
 client/   - This is a sample client application that uses
@@ -68,18 +67,18 @@ Running the client
    - mvn exec:java
 
 By default, the client will use the http port 8080 for constructing the URIs.
-This port value is set during the build in the client.properties resource file. If the server is listening on the alternative port then you can use an 'http.port' system property during the build :
+This port value is set during the build in the client.properties resource file. If the server is listening on an alternative port then you can use an 'http.port' system property during the build :
    
 - mvn install -Dhttp.port=8181
 
 Demo Desciption
 ---------------
 
-JAX-RS Server provides two services via the registration of multiple (two) root resource classes, 
+The JAX-RS Server provides two services via the registration of multiple (two) root resource classes, 
 PersonService and SearchService with both services sharing the data storage.
 
-PersonService provides information about all the persons it knows about, about individual persons and their relatives :
-- ancestors - parents, grandparents, etc
+PersonService provides information about all the persons it knows about, about individual persons and their relatives:
+- ancestors - parents, grandparents, etc.
 - descendants - children, etc
 - partners
 
@@ -91,11 +90,11 @@ It lets users search for individual people by specifying one or more names as qu
 this service also verifies that the JAX-RS server is capable of supporting 
 multiple root resource classes.
 
-RESTful client uses CXF JAX-RS WebClient to traverse all the information about an individual Person and also adds a new child.
+The RESTful client uses CXF's JAX-RS WebClient to traverse all the information about an individual Person and also adds a new child.
 It also shows how to use a simple proxy.
 
 Finally a simple proxy is created and is used to make the calls.
 
-Please check the comment in the code for a detailed description on how client calls are made and 
+Please check the comments in the code for a detailed description on how client calls are made and 
 how they are processed on the server side.
 
