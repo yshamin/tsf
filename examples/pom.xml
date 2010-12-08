@@ -19,6 +19,8 @@
         <module>jaxrs-intro</module>
         <module>jaxrs-advanced</module>
         <module>jaxrs-jaxws-java-first</module>
+        <module>jaxrs-jaxws-description-first</module>
+        <module>jaxrs-jaxws-authorization</module>
         <module>jaxrs-jms-http</module>
     </modules>
 
