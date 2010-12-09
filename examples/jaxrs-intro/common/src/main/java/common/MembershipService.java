@@ -1,3 +1,6 @@
+/**
+ * Copyright (C) 2010 Talend Inc. - www.talend.com
+ */
 package common;
 
 import java.util.Collection;
@@ -17,31 +20,31 @@ import javax.ws.rs.core.Response;
 @Path("/members")
 public interface MembershipService {
 
-   /**
-    * Sub-resource locator (note the absence of HTTP Verb annotations such as
-    * GET). It locates a Person instance with a provided id and delegates to it
-    * to process the request. Note that a Person sub-resource may delegate to
-    * another sub-resource.
-    */
-   @Path("/{id}")
-   public Person getMemberSubresource(@PathParam("id") int id);
+    /**
+     * Sub-resource locator (note the absence of HTTP Verb annotations such as
+     * GET). It locates a Person instance with a provided id and delegates to it
+     * to process the request. Note that a Person sub-resource may delegate to
+     * another sub-resource.
+     */
+    @Path("/{id}")
+    public Person getMemberSubresource(@PathParam("id") int id);
 
-   /**
-    * Adds a member (person) to the membership list. It is expected to return an
-    * HTTP 201 status and Location header pointing to a newly created child
-    * resource. Note that JAX-RS Response can have a status, headers, and
-    * response entity returned.
-    */
-   @POST
-   @Consumes("application/xml")
-   public Response addMember(Person person);
+    /**
+     * Adds a member (person) to the membership list. It is expected to return
+     * an HTTP 201 status and Location header pointing to a newly created child
+     * resource. Note that JAX-RS Response can have a status, headers, and
+     * response entity returned.
+     */
+    @POST
+    @Consumes("application/xml")
+    public Response addMember(Person person);
 
-   /**
-    * Returns an explicit collection of all members in XML format in response to
-    * HTTP GET requests
-    */
-   @GET
-   @Produces("application/xml")
-   public Collection<Person> getAllMembers();
+    /**
+     * Returns an explicit collection of all members in XML format in response
+     * to HTTP GET requests
+     */
+    @GET
+    @Produces("application/xml")
+    public Collection<Person> getAllMembers();
 
 }
