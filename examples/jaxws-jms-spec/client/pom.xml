@@ -20,7 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.talend.sf.examples.jaxws-jms-spec</groupId>
     <artifactId>jms-spec-client</artifactId>
-    <name>SOAP/JMS Transport Specification Demo using Document-Literal Style - Client</name>
+    <name>SOAP/JMS Transport Specification Example Client</name>
     <version>1.0</version>
     <packaging>bundle</packaging>
 
