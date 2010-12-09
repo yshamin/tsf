@@ -22,7 +22,6 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -69,7 +68,7 @@ public class CustomerServiceClient {
             File wsdlFile = new File(args[0]);
             URL wsdlURL;
             if (wsdlFile.exists()) {
-                wsdlURL = wsdlFile.toURL();
+                wsdlURL = wsdlFile.toURI().toURL();
             } else {
                 wsdlURL = new URL(args[0]);
             }

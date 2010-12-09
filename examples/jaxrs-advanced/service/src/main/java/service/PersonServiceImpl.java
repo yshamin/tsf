@@ -39,7 +39,7 @@ public class PersonServiceImpl implements PersonService {
    }
 
    @Override
-   public Collection<Person> getPersons(int start, int size) {
+   public Collection<Person> getPersons(Integer start, Integer size) {
       return storage.getPersons(start, size);
    }
 

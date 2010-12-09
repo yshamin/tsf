@@ -10,9 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 
 /**
  * This interface describes a JAX-RS root resource.
@@ -33,8 +31,9 @@ public interface PersonService {
 	 */
 	@GET
 	@Produces({"application/xml", "application/json" })
-	Collection<Person> getPersons(@QueryParam("start") int start,
-	      @DefaultValue("-1") @QueryParam("size") int size);
+	Collection<Person> getPersons(
+			@DefaultValue("0") @QueryParam("start") Integer start,
+	        @DefaultValue("1") @QueryParam("size") Integer size);
 
 	
 	/**

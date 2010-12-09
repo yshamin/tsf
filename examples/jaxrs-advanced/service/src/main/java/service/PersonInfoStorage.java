@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
+
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
 
 import common.Person;
 
@@ -42,14 +46,22 @@ public class PersonInfoStorage {
 	}
 
    public Collection<Person> getPersons(int start, int count) {
-      ArrayList<Person> pList = new ArrayList<Person>(persons.values());
-      if (count == 0  || count < -1 || start < 0 || start > pList.size()) {
-         return null; 
+      List<Person> pList = new ArrayList<Person>(persons.values());
+      
+      if (start < 0 || count < -1) {
+    	  // illegal parameters, bad client request
+    	  throw new WebApplicationException(Response.Status.BAD_REQUEST);
+      }
+      
+      if (count == 0 || start > pList.size()) {
+    	  // returning null will result in the client getting HTTP 204
+    	  // if needed, an empty collection can be returned instead
+          return null; 
       } else if (count == -1 || pList.size() < start + count) {
          count = pList.size() - start;
       }
       
-      return pList.subList(start, start+count);
+      return pList.subList(start, start + count);
    }
 	
     private void init() { 
