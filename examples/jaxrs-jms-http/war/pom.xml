@@ -10,7 +10,6 @@
     <artifactId>jaxrs-jms-http-war</artifactId>
     <name>JAX-RS JMS HTTP Demo - War</name>
     <packaging>war</packaging>
-    <url>http://maven.apache.org</url>
 
     <parent>
         <groupId>com.talend.sf.examples.jaxrs-jms-http</groupId>

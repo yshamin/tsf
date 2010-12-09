@@ -10,7 +10,6 @@
     <artifactId>jaxrs-advanced-service-war</artifactId>
     <name>Advanced JAX-RS Advanced Example War</name>
     <packaging>war</packaging>
-    <url>http://maven.apache.org</url>
 
     <parent>
         <groupId>com.talend.sf.examples.jaxrs-advanced-example</groupId>

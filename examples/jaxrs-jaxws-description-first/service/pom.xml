@@ -10,7 +10,6 @@
     <artifactId>jaxrs-jaxws-description-first-service</artifactId>
     <name>JAX-RS JAX-WS Description First Service</name>
     <packaging>bundle</packaging>
-    <url>http://maven.apache.org</url>
 
     <parent>
         <groupId>com.talend.sf.examples.jaxrs-jaxws-description-first</groupId>

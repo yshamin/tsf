@@ -10,7 +10,6 @@
     <artifactId>jaxrs-intro-service-war</artifactId>
     <name>JAX-RS Intro Example War</name>
     <packaging>war</packaging>
-    <url>http://maven.apache.org</url>
 
     <parent>
         <groupId>com.talend.sf.examples.jaxrs-intro-example</groupId>
