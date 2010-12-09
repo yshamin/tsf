@@ -1,3 +1,6 @@
+/**
+ * Copyright (C) 2010 Talend Inc. - www.talend.com
+ */
 package client;
 
 import java.io.ByteArrayOutputStream;
