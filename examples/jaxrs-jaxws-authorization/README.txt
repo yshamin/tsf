@@ -42,8 +42,8 @@ Deploying the service
  * To the OSGI container
 
     From the OSGi command line, run:
-	install mvn:com.talend.sf.examples/jaxrs-jaxws-authorization-common/1.0
-        install mvn:com.talend.sf.examples/jaxrs-jaxws-authorization-service/1.0
+	install mvn:com.talend.sf.examples.jaxrs-jaxws-authorization/jaxrs-jaxws-authorization-common/1.0
+        install mvn:com.talend.sf.examples.jaxrs-jaxws-authorization/jaxrs-jaxws-authorization-service/1.0
      That should print out the bundle IDs for the common and server bundles. From 
      the OSGi command line, then start the installed bundles, for example
         start 115
