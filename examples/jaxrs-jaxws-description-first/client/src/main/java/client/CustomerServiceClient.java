@@ -1,20 +1,5 @@
 /**
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements. See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership. The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License. You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright (C) 2010 Talend Inc. - www.talend.com
  */
 package client;
 
@@ -41,29 +26,29 @@ import com.example.customerservice.CustomerType;
 import com.example.customerservice.NoSuchCustomerException;
 
 public class CustomerServiceClient {
-	
-	private static final String PORT_PROPERTY = "http.port";
-	private static final int DEFAULT_PORT_VALUE = 8080;
-	
-	private static final String HTTP_PORT;
-	static {
-		Properties props = new Properties();
-		try {
-		    props.load(CustomerServiceClient.class.getResourceAsStream("/client.properties"));
-		} catch (Exception ex) {
-		    throw new RuntimeException("client.properties resource is not available");
-		}
-		HTTP_PORT = props.getProperty(PORT_PROPERTY);
-	} 
-	
-	int port;
-	
-    public CustomerServiceClient() {
-    	port = getPort();
+
+    private static final String PORT_PROPERTY = "http.port";
+    private static final int DEFAULT_PORT_VALUE = 8080;
+
+    private static final String HTTP_PORT;
+    static {
+        Properties props = new Properties();
+        try {
+            props.load(CustomerServiceClient.class.getResourceAsStream("/client.properties"));
+        } catch (Exception ex) {
+            throw new RuntimeException("client.properties resource is not available");
+        }
+        HTTP_PORT = props.getProperty(PORT_PROPERTY);
     }
-    
+
+    int port;
+
+    public CustomerServiceClient() {
+        port = getPort();
+    }
+
     public void useCustomerServiceSoap(String args[]) throws Exception {
-    	CustomerServiceService customerServiceService;
+        CustomerServiceService customerServiceService;
         if (args.length != 0 && args[0].length() != 0) {
             File wsdlFile = new File(args[0]);
             URL wsdlURL;
@@ -80,77 +65,72 @@ public class CustomerServiceClient {
         }
 
         System.out.println("Using SOAP CustomerService");
-                
+
         CustomerService customerService = customerServiceService.getCustomerServicePort();
-        
+
         Customer customer = createCustomer("Barry");
         customerService.updateCustomer(customer);
         customer = customerService.getCustomerByName("Barry");
         printCustomerDetails(customer);
         try {
-        	customerService.getCustomerByName("Smith");
-        	throw new RuntimeException("Exception is expected");
+            customerService.getCustomerByName("Smith");
+            throw new RuntimeException("Exception is expected");
         } catch (NoSuchCustomerException ex) {
-        	System.out.println("NoSuchCustomerException : Smith");
+            System.out.println("NoSuchCustomerException : Smith");
         }
     }
-    
+
     public void useCustomerServiceRest(String args[]) throws Exception {
-    	JAXBElementProvider provider = new JAXBElementProvider();
+        JAXBElementProvider provider = new JAXBElementProvider();
         provider.setUnmarshallAsJaxbElement(true);
         provider.setMarshallAsJaxbElement(true);
-        
+
         List<Object> providers = new ArrayList<Object>();
         providers.add(provider);
         providers.add(new ResponseExceptionMapper<NoSuchCustomerException>() {
 
-			@Override
-			public NoSuchCustomerException fromResponse(Response r) {
-				return new NoSuchCustomerException();
-			}
-        	
+            @Override
+            public NoSuchCustomerException fromResponse(Response r) {
+                return new NoSuchCustomerException();
+            }
+
         });
-        
-        
-        CustomerService customerService = JAXRSClientFactory.createFromModel(
-        		"http://localhost:" + port + "/services/rest", 
-        		CustomerService.class, 
-        		"classpath:/model/CustomerService-jaxrs.xml", 
-        		providers, 
-        		null);
-        
+
+        CustomerService customerService = JAXRSClientFactory
+            .createFromModel("http://localhost:" + port + "/services/rest", CustomerService.class,
+                             "classpath:/model/CustomerService-jaxrs.xml", providers, null);
+
         System.out.println("Using RESTful CustomerService");
-        
+
         Customer customer = createCustomer("Smith");
         customerService.updateCustomer(customer);
-        
+
         customer = customerService.getCustomerByName("Smith");
         printCustomerDetails(customer);
-        
+
         customer = customerService.getCustomerByName("Barry");
         if (customer != null) {
-        	throw new RuntimeException("Barry should not be found");
+            throw new RuntimeException("Barry should not be found");
         }
-        System.out.println("Status : " 
-        		+ WebClient.client(customerService).getResponse().getStatus());
-        
+        System.out.println("Status : " + WebClient.client(customerService).getResponse().getStatus());
+
         try {
-        	customerService.getCustomerByName("John");
-        	throw new RuntimeException("Exception is expected");
+            customerService.getCustomerByName("John");
+            throw new RuntimeException("Exception is expected");
         } catch (NoSuchCustomerException ex) {
-        	System.out.println("NoSuchCustomerException : John");
+            System.out.println("NoSuchCustomerException : John");
         }
     }
-    
+
     private void printCustomerDetails(Customer customer) {
-    	System.out.print("Name : " + customer.getName());
-    	System.out.print(", orders : " + customer.getNumOrders());
-    	System.out.print(", shares : " + customer.getShares());
-    	System.out.println();
+        System.out.print("Name : " + customer.getName());
+        System.out.print(", orders : " + customer.getNumOrders());
+        System.out.print(", shares : " + customer.getShares());
+        System.out.println();
     }
-    
+
     private Customer createCustomer(String name) {
-    	Customer cust = new Customer();
+        Customer cust = new Customer();
         cust.setName(name);
         cust.getAddress().add("Pine Street 200");
         Date bDate = new GregorianCalendar(2009, 01, 01).getTime();
@@ -161,20 +141,20 @@ public class CustomerServiceClient {
         cust.setType(CustomerType.BUSINESS);
         return cust;
     }
-    
-    private static int getPort() { 
-    	try {
-    		return Integer.valueOf(HTTP_PORT);
-    	} catch (NumberFormatException ex) {
-    		// ignore
-    	}
-    	return DEFAULT_PORT_VALUE;
+
+    private static int getPort() {
+        try {
+            return Integer.valueOf(HTTP_PORT);
+        } catch (NumberFormatException ex) {
+            // ignore
+        }
+        return DEFAULT_PORT_VALUE;
     }
-    
+
     public static void main(String args[]) throws Exception {
         CustomerServiceClient client = new CustomerServiceClient();
         client.useCustomerServiceSoap(args);
         client.useCustomerServiceRest(args);
-        System.exit(0); 
+        System.exit(0);
     }
 }

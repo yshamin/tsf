@@ -1,43 +1,48 @@
+<!--
+    Copyright (C) 2010 Talend Inc. - www.talend.com
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-   <modelVersion>4.0.0</modelVersion>
-   <parent>
-      <groupId>com.talend.sf.examples</groupId>
-      <artifactId>jaxrs-jaxws-description-first-example</artifactId>
-      <version>1.0</version>
-      <relativePath>..</relativePath>
-   </parent>
-   <artifactId>jaxrs-jaxws-description-first-service</artifactId>
-   <name>JAX-RS JAX-WS Description First Service</name>
-   <packaging>bundle</packaging>
-   <url>http://maven.apache.org</url>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.talend.sf.examples.jaxrs-jaxws-description-first</groupId>
+    <artifactId>jaxrs-jaxws-description-first-service</artifactId>
+    <name>JAX-RS JAX-WS Description First Service</name>
+    <packaging>bundle</packaging>
+    <url>http://maven.apache.org</url>
 
-   <dependencies>
-     <dependency>
-       <groupId>com.talend.sf.examples</groupId>
-       <artifactId>jaxrs-jaxws-description-first-common</artifactId>
-       <version>1.0</version>
-     </dependency>
-   </dependencies>
+    <parent>
+        <groupId>com.talend.sf.examples.jaxrs-jaxws-description-first</groupId>
+        <artifactId>jaxrs-jaxws-description-first-example</artifactId>
+        <version>1.0</version>
+        <relativePath>..</relativePath>
+    </parent>
 
-   <build>
-      <plugins>
-        <plugin>
-	   <groupId>org.apache.felix</groupId>
-	   <artifactId>maven-bundle-plugin</artifactId>
-	   <configuration>
-	      <instructions>
-		<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-		<Require-Bundle>org.apache.cxf.bundle,org.springframework.beans,jaxrs-jaxws-description-first-common</Require-Bundle>
-	     </instructions>
-	   </configuration>
-	</plugin>
-    </plugins>
-  </build>
-  <profiles>
-  <profile>
+    <dependencies>
+        <dependency>
+            <groupId>com.talend.sf.examples.jaxrs-jaxws-description-first</groupId>
+            <artifactId>jaxrs-jaxws-description-first-common</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Require-Bundle>org.apache.cxf.bundle,org.springframework.beans,jaxrs-jaxws-description-first-common</Require-Bundle>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
             <id>server</id>
             <dependencies>
                 <dependency>
@@ -67,6 +72,6 @@
                 </plugins>
             </build>
         </profile>
-       </profiles>  
+    </profiles>
 </project>
 
