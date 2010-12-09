@@ -1,9 +1,9 @@
 JAX-RS JAX-WS Java First Example 
 ================================
 
-The demo shows how a single service instance can be exposed as either JAX-RS or JAX-WS
-service at the same time and how CXF JAX-RS and JAX-WS proxies can reuse the same code for
-invoking on the corresponding emdpoints.
+The demo shows how a single service instance can be exposed as both JAX-RS and JAX-WS
+services at the same time and how CXF JAX-RS and JAX-WS proxies can reuse the same code for
+invoking on the corresponding endpoints.
 
 
 Building the Demo
@@ -64,8 +64,8 @@ Demo Desciption
 ---------------
 
 The goal of the demo is to show how the existing production code can be easily exposed as RESTful service by applying 
-several JAX-RS annotations to the interfaces, for example, to HelloWorld interface. 
+several JAX-RS annotations to the interfaces, for example, to the HelloWorld interface. 
 
 By following this approach users can experiment with the RESTful approach without necessarily changing the way the existing application
-has been designed. 
+has been designed.
 
