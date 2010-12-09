@@ -1,3 +1,6 @@
+/**
+ * Copyright (C) 2010 Talend Inc. - www.talend.com
+ */
 package common;
 
 import java.util.Collection;
@@ -13,47 +16,46 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 /**
- * This interface describes a JAX-RS root resource.
- * All the JAXRS annotations (except those overridden) will be inherited by classes implementing it.
+ * This interface describes a JAX-RS root resource. All the JAXRS annotations
+ * (except those overridden) will be inherited by classes implementing it.
  */
 @Path("/main")
 public interface PersonService {
-    
-	/**
-	 * Returns an explicit collection of persons in either XML or JSON formats 
-	 * in response to HTTP GET requests.
-	 * 
-	 * @param start Starting index of the person to return (not necessarily ID)
-	 * @param size  Number of persons to return (-1 to signify all persons)
-	 * 
-	 * If query param not provided, primitive types default to value 0,  
-	 * Objects to null unless overridden via @DefaultValue 
-	 */
-	@GET
-	@Produces({"application/xml", "application/json" })
-	Collection<Person> getPersons(
-			@DefaultValue("0") @QueryParam("start") Integer start,
-	        @DefaultValue("1") @QueryParam("size") Integer size);
 
-	
-	/**
-	 * Sub-resource locator (note the absence of HTTP Verb annotations such as GET).
-	 * It locates a Person instance with a provided id and delegates to it to process
-	 * the request. Note that a Person sub-resource may delegate to another sub-resource.
-	 * This @Path uses a regular expression to match (permit) only numeric IDs from 
-	 * the client in order to have this locator called.
-	 */
-   @Path("/{id:\\d+}")
-   Person getPersonSubresource(@PathParam("id") Long id);
-    
-	/**
-	 * Adds a child to the existing Person. It is expected to return an HTTP 201 status 
-	 * and Location header pointing to a newly created child resource. Note that
-	 * JAX-RS Response can have a status, headers, and response entity returned.
-	 */
-	@POST
-	@Path("{id}/children")
-	@Consumes({"application/xml", "application/json" })
-	Response addChild(@PathParam("id") Long id, Person child);
-	
+    /**
+     * Returns an explicit collection of persons in either XML or JSON formats
+     * in response to HTTP GET requests.
+     * 
+     * @param start Starting index of the person to return (not necessarily ID)
+     * @param size Number of persons to return (-1 to signify all persons) If
+     *            query param not provided, primitive types default to value 0,
+     *            Objects to null unless overridden via @DefaultValue
+     */
+    @GET
+    @Produces({"application/xml", "application/json"})
+    Collection<Person> getPersons(@DefaultValue("0") @QueryParam("start") Integer start,
+                                  @DefaultValue("1") @QueryParam("size") Integer size);
+
+    /**
+     * Sub-resource locator (note the absence of HTTP Verb annotations such as
+     * GET). It locates a Person instance with a provided id and delegates to it
+     * to process the request. Note that a Person sub-resource may delegate to
+     * another sub-resource. This @Path uses a regular expression to match
+     * (permit) only numeric IDs from the client in order to have this locator
+     * called.
+     */
+    @Path("/{id:\\d+}")
+    Person getPersonSubresource(@PathParam("id") Long id);
+
+    /**
+     * Adds a child to the existing Person. It is expected to return an HTTP 201
+     * status and Location header pointing to a newly created child resource.
+     * Note that JAX-RS Response can have a status, headers, and response entity
+     * returned.
+     */
+    @POST
+    @Path("{id}/children")
+    @Consumes({"application/xml", "application/json"})
+    Response addChild(@PathParam("id") Long id, Person child);
+
 }

@@ -1,3 +1,6 @@
+/**
+ * Copyright (C) 2010 Talend Inc. - www.talend.com
+ */
 
 package common;
 
@@ -6,7 +9,6 @@ import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
 import javax.xml.namespace.QName;
 
-
 @XmlRegistry
 public class ObjectFactory {
 
@@ -14,15 +16,14 @@ public class ObjectFactory {
     private final static QName _PersonCollection_QNAME = new QName("http://org.persons", "Persons");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.example.customerservice
-     * 
+     * Create a new ObjectFactory that can be used to create new instances of
+     * schema derived classes for package: com.example.customerservice
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link Person }
-     * 
      */
     public Person createPerson() {
         return new Person();
@@ -30,16 +31,14 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PersonCollection }
-     * 
      */
     public PersonCollection createPersonCollection() {
         return new PersonCollection();
     }
 
-
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetCustomersByNameResponse }{@code >}}
-     * 
+     * Create an instance of {@link JAXBElement }{@code <}
+     * {@link GetCustomersByNameResponse }{@code >}
      */
     @XmlElementDecl(namespace = "http://org/persons/", name = "Person")
     public JAXBElement<Person> createPerson(Person value) {
@@ -47,8 +46,8 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetCustomersByNameResponse }{@code >}}
-     * 
+     * Create an instance of {@link JAXBElement }{@code <}
+     * {@link GetCustomersByNameResponse }{@code >}
      */
     @XmlElementDecl(namespace = "http://org/persons/", name = "Persons")
     public JAXBElement<PersonCollection> createPersonCollection(PersonCollection value) {

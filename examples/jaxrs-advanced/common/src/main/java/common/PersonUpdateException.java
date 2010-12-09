@@ -1,22 +1,24 @@
+/**
+ * Copyright (C) 2010 Talend Inc. - www.talend.com
+ */
 package common;
 
 /**
  * Indicates that the Person update request was invalid
- *
  */
 public class PersonUpdateException extends Exception {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public PersonUpdateException() {
-		
-	}
-	
+    public PersonUpdateException() {
+
+    }
+
     public PersonUpdateException(String message) {
-		super(message);
-	}
-	
+        super(message);
+    }
+
     public PersonUpdateException(Throwable cause) {
-		super(cause);
-	}
+        super(cause);
+    }
 }

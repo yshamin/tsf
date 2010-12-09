@@ -1,3 +1,6 @@
+/**
+ * Copyright (C) 2010 Talend Inc. - www.talend.com
+ */
 package service;
 
 import java.util.List;
@@ -12,33 +15,31 @@ import common.PersonCollection;
 
 /**
  * JAX-RS SerachService root resource
- *
  */
 @Path("search")
 public class SearchService {
 
-	private PersonInfoStorage storage;
-	
-	public SearchService() {
-	}
-	
-	public void setStorage(PersonInfoStorage storage) {
-		this.storage = storage;
-	}
-	
-	@GET
-	@Produces({"application/xml", "application/json" })
-	public PersonCollection findPersons(@QueryParam("name") List<String> names) {
-		PersonCollection collection = new PersonCollection();
-		for (String name : names) {
-			for (Person p : storage.getAll()) {
-				if (p.getName().equalsIgnoreCase(name)) {
-					collection.addPerson(p);
-				}
-			}
-		}
-		return collection;
-	}
-	
-	
+    private PersonInfoStorage storage;
+
+    public SearchService() {
+    }
+
+    public void setStorage(PersonInfoStorage storage) {
+        this.storage = storage;
+    }
+
+    @GET
+    @Produces({"application/xml", "application/json"})
+    public PersonCollection findPersons(@QueryParam("name") List<String> names) {
+        PersonCollection collection = new PersonCollection();
+        for (String name : names) {
+            for (Person p : storage.getAll()) {
+                if (p.getName().equalsIgnoreCase(name)) {
+                    collection.addPerson(p);
+                }
+            }
+        }
+        return collection;
+    }
+
 }

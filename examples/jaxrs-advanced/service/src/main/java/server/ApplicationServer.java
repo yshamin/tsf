@@ -1,3 +1,6 @@
+/**
+ * Copyright (C) 2010 Talend Inc. - www.talend.com
+ */
 package server;
 
 import javax.ws.rs.ext.RuntimeDelegate;
@@ -9,7 +12,7 @@ public class ApplicationServer {
     protected ApplicationServer() throws Exception {
         PersonApplication application = new PersonApplication();
         RuntimeDelegate delegate = RuntimeDelegate.getInstance();
-        
+
         JAXRSServerFactoryBean bean = delegate.createEndpoint(application, JAXRSServerFactoryBean.class);
         bean.setAddress("http://localhost:8080/services" + bean.getAddress());
         bean.create().start();

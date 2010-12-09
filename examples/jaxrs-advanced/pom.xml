@@ -1,14 +1,18 @@
+<!--
+    Copyright (C) 2010 Talend Inc. - www.talend.com
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-   <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
    
-   <groupId>com.talend.sf.examples</groupId>
-   <artifactId>jaxrs-advanced-example</artifactId>
-   <version>1.0</version>
-   <name>JAX-RS Advanced Example</name>
-   <packaging>pom</packaging>
+
+    <groupId>com.talend.sf.examples.jaxrs-advanced-example</groupId>
+    <artifactId>jaxrs-advanced-example</artifactId>
+    <version>1.0</version>
+    <name>JAX-RS Advanced Example</name>
+    <packaging>pom</packaging>
 
     <properties>
         <cxf.version>2.3.1</cxf.version>
@@ -16,23 +20,23 @@
     </properties>
 
 
-   <dependencies>
-	<dependency>
-	   <groupId>org.apache.cxf</groupId>
-	   <artifactId>cxf-rt-frontend-jaxrs</artifactId>
-	   <version>${cxf.version}</version>
-  	</dependency>
-   </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+    </dependencies>
 
-   <modules>
-      <module>common</module>
-      <module>service</module>
-      <module>war</module>
-      <module>client</module>
-   </modules>
+    <modules>
+        <module>common</module>
+        <module>service</module>
+        <module>war</module>
+        <module>client</module>
+    </modules>
 
 
-   <build>
+    <build>
         <defaultGoal>install</defaultGoal>
         <pluginManagement>
             <plugins>

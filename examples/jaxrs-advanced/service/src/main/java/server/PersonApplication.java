@@ -1,3 +1,6 @@
+/**
+ * Copyright (C) 2010 Talend Inc. - www.talend.com
+ */
 package server;
 
 import java.util.HashSet;
@@ -15,33 +18,33 @@ import service.SearchService;
 
 @ApplicationPath("/personservice")
 public class PersonApplication extends Application {
-	@Override
+    @Override
     public Set<Class<?>> getClasses() {
         return new HashSet<Class<?>>();
     }
 
-    @Override 
+    @Override
     public Set<Object> getSingletons() {
         Set<Object> classes = new HashSet<Object>();
-        
+
         PersonInfoStorage storage = new PersonInfoStorage();
-        
+
         PersonServiceImpl personService = new PersonServiceImpl();
         personService.setStorage(storage);
         classes.add(personService);
-        
+
         SearchService searchService = new SearchService();
         searchService.setStorage(storage);
         classes.add(searchService);
-        
+
         // custom providers
-        
+
         classes.add(new PersonExceptionMapper());
-        
+
         JSONProvider provider = new JSONProvider();
         provider.setIgnoreNamespaces(true);
         classes.add(provider);
-        
+
         return classes;
     }
 }
