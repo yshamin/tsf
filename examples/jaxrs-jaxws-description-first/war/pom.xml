@@ -39,7 +39,7 @@
                     <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
                     <webResources>
                         <resource>
-                            <directory>../common/src/main/model</directory>
+                            <directory>../common/src/main/resources/model</directory>
                             <targetPath>WEB-INF</targetPath>
                             <includes>
                                 <include>*.wsdl</include>
