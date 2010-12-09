@@ -9,10 +9,6 @@
 
     <packaging>pom</packaging>
 
-    <properties>
-    </properties>
-
-
     <repositories>
           <repository>
               <id>apache.snapshots</id>

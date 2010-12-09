@@ -100,11 +100,11 @@
 
         <!-- Copy license and other files from root -->
         <fileSet>
-            <directory>${basedir}/..</directory>
+            <directory>${basedir}</directory>
             <outputDirectory>/</outputDirectory>
             <includes>
                 <include>README</include>
-                <include>RELEASE*</include>
+                <!--include>RELEASE*</include-->
             </includes>
             <lineEnding>unix</lineEnding>
             <fileMode>0644</fileMode>
