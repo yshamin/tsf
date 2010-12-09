@@ -1,3 +1,6 @@
+/**
+ * Copyright (C) 2010 Talend Inc. - www.talend.com
+ */
 
 package demo.interceptors.server;
 
@@ -14,8 +17,8 @@ public class Server {
         Object implementor = new GreeterImpl();
         String address = "http://localhost:8080/SoapContext/SoapPort";
         Endpoint endpoint = Endpoint.create(implementor);
-        
-        //Add the DemoInterceptor's to print the contents
+
+        // Add the DemoInterceptor's to print the contents
         DemoInterceptor.addInterceptors((EndpointImpl)endpoint);
         endpoint.publish(address);
     }
