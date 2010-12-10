@@ -65,7 +65,7 @@
     </wsdl:binding>
     <wsdl:service name="GreeterService">
         <wsdl:port binding="tns:Greeter_SOAPBinding" name="GreeterPort">
-            <soap:address location="http://localhost:8080/SoapContext/SoapPort"/>
+            <soap:address location="http://localhost:8080/services/InterceptorExample"/>
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>

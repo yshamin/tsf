@@ -15,7 +15,7 @@ public class Server {
     protected Server() throws Exception {
         System.out.println("Starting Server");
         Object implementor = new GreeterImpl();
-        String address = "http://localhost:8080/SoapContext/SoapPort";
+        String address = "http://localhost:8080/services/InterceptorExample";
         Endpoint endpoint = Endpoint.create(implementor);
 
         // Add the DemoInterceptor's to print the contents

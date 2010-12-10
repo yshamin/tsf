@@ -74,7 +74,7 @@ Running the Client
      From the OSGi command line, run:
 	install mvn:com.talend.sf.examples.jaxws-jms-spec/jms-spec-common/1.0
         install mvn:com.talend.sf.examples.jaxws-jms-spec/jms-spec-client/1.0
-     That should print out the bundle ID for the server bundle.  From 
+     That should print out the bundle ID for the client bundle.  From 
      the OSGi command line, then run
         start 115
      where 115 is the bundle ID number that was printed during install.
