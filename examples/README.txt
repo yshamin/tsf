@@ -1,15 +1,43 @@
-The Examples Folder of Talend Service Factory contains the following samples:
 
-jaxws-jms-spec: demonstrates the use of the Document-Literal style 
-binding over the SOAP/JMS Specification transport.
+Welcome to Talend Service Factory!
+=====================================
 
-interceptors: demonstrates how a message changes and is manipulated as it passes through the various CXF interceptors.
+Talend Service Factory (TSF) uses the industry leading open source 
+Apache CXF implementation of JAX-WS to help you service enable your 
+existing applications and interfaces.  The CXF lightweight, modular 
+architecture is based on Spring, so it will work with your application 
+regardless of the platform on which it is running.  It will run on 
+stand-alone JVM applications, as part of a servlet container such as 
+Tomcat, within a JEE server, or in an OSGI container such as Equinox.  
 
-jaxrs-intro: shows basic features of the the JAX-RS 1.1 specification and API such as root resources, subresources and HTTP verbs (GET/PUT/POST).  
 
-jaxrs-advanced:  building on the jaxrs-intro sample, this demo additionally demonstrates multiple root resource classes, recursive subresources, resource methods consuming and producing data in different formats (XML and JSON), using JAX-RS Response to return status, headers and optional entity, using UriInfo and UriBuilder for working with URI and ExceptionMappers for handling application exceptions.
+This package contains several new examples that show advanced features
+of CXF.  All of the examples are setup to be built and run indepentent,
+but they are also all setup to be run in the Talend Service Factory
+OSGi container that can be obtained from <PUT URL HERE>.
 
-jaxrs-jaxws-authorization: shows how a Role-Base-Access-Control policy can be applied to JAX-WS and JAX-RS services with the help of the container-managed authentication and CXF security filters enforcing the authorization rules.
+
+jaxws-jms-spec: demonstrates using JAX-WS to clients and servers to
+talk SOAP over JMS, but using the SOAP/JMS Specification for 
+configuration.
+
+interceptors: demonstrates how a message changes and is manipulated
+as it passes through the various CXF interceptors.
+
+jaxrs-intro: shows basic features of the the JAX-RS 1.1 specification 
+and API such as root resources, subresources and HTTP verbs (GET/PUT/POST).  
+
+jaxrs-advanced:  building on the jaxrs-intro sample, this demo additionally
+demonstrates multiple root resource classes, recursive subresources, 
+resource methods consuming and producing data in different formats (XML 
+and JSON), using JAX-RS Response to return status, headers and optional 
+entity, using UriInfo and UriBuilder for working with URI and 
+ExceptionMappers for handling application exceptions.
+
+jaxrs-jaxws-authorization: shows how a Role-Base-Access-Control policy 
+can be applied to JAX-WS and JAX-RS services with the help of the 
+container-managed authentication and CXF security filters enforcing 
+the authorization rules.
 
 jaxrs-jaxws-description-first: shows how SOAP services created as
 part of the document (WSDL) first approach process can get RESTified by having
