@@ -23,8 +23,7 @@ import common.MembershipService;
  */
 public class MembershipServiceImpl implements MembershipService {
     /*
-     * AtomicInteger, ConcurrentHashMap because MembershipService is a singleton
-     * accessed by multiple requests
+     * AtomicInteger, ConcurrentHashMap because MembershipService is a singleton accessed by multiple requests
      */
     Map<Integer, Person> members = new ConcurrentHashMap<Integer, Person>();
     AtomicInteger currentId = new AtomicInteger();
@@ -63,6 +62,18 @@ public class MembershipServiceImpl implements MembershipService {
         // param in create() used for generating HTTP Location header so client
         // can know the new item's ID.
         return Response.created(URI.create("/members/" + person.getId())).build();
+    }
+
+    @Override
+    public Response deleteMember(int id) {
+        System.out.println("----invoking deleteMember for id = :" + id);
+        Person p = members.get(id);
+        if (p == null) {
+            // will return HTTP 404 "not found" code
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        members.remove(id);
+        return Response.status(Response.Status.GONE).build();
     }
 
 }

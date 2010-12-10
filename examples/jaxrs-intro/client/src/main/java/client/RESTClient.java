@@ -57,16 +57,21 @@ public final class RESTClient {
         String location = resp.getMetadata().getFirst("Location").toString();
         System.out.println("New Member location returned from POST: " + location);
         System.out.println("Requerying newly added data using above URL:");
+        int maxID = new Integer(location.substring(location.lastIndexOf("/") + 1)).intValue();
         getMember(location);
 
         // GET with the .../members/ URI retrieves all members
-        System.out.println("Retrieving list of all members:");
-        List<Person> persons = new ArrayList<Person>(wc.getCollection(Person.class));
-        for (Person person : persons) {
-            System.out
-                .println("ID " + person.getId() + ": " + person.getName() + ", age: " + person.getAge());
+        getAllMembers(wc);
+
+        if (maxID > -1) {
+            System.out.println("Removing member with ID of " + maxID);
+            // resp.getStatus() returns 410 returned on successful DELETE, 404 if item not found
+            resp = wc.path(new Integer(maxID).toString()).delete();
         }
 
+        // reprint of list with latest member removed
+        wc.reset();
+        getAllMembers(wc);
         System.out.println("\n");
         System.exit(0);
     }
@@ -86,4 +91,12 @@ public final class RESTClient {
         return p;
     }
 
+    private static void getAllMembers(WebClient webClient) {
+        System.out.println("Retrieving list of all members:");
+        List<Person> persons = new ArrayList<Person>(webClient.getCollection(Person.class));
+        for (Person person : persons) {
+            System.out
+                .println("ID " + person.getId() + ": " + person.getName() + ", age: " + person.getAge());
+        }
+    }
 }
