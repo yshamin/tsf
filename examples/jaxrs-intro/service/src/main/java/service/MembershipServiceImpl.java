@@ -66,7 +66,7 @@ public class MembershipServiceImpl implements MembershipService {
 
     @Override
     public Response deleteMember(int id) {
-        System.out.println("----invoking deleteMember for id = :" + id);
+        System.out.println("----invoking deleteMember for id = " + id);
         Person p = members.get(id);
         if (p == null) {
             // will return HTTP 404 "not found" code
