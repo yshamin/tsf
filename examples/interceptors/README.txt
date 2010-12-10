@@ -37,7 +37,7 @@ Starting the Service
   * From the command line:
      cd service ; mvn exec:java
 
-  * From within the OSGi container
+  * From within the Talend Services Framework OSGi container:
      From the OSGi command line, run:
 	install mvn:com.talend.sf.examples.interceptors/interceptors-common/1.0
         install mvn:com.talend.sf.examples.interceptors/interceptors-server/1.0
