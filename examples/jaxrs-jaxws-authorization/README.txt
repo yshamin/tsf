@@ -39,7 +39,7 @@ Deploying the service
 
     cd war; mvn jetty:run
 
- * To the Talend Services Framework OSGi container:
+ * To the Talend Service Factory OSGi container:
 
     From the OSGi command line, run:
 	install mvn:com.talend.sf.examples.jaxrs-jaxws-authorization/jaxrs-jaxws-authorization-common/1.0

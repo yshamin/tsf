@@ -1,4 +1,4 @@
-The Examples Folder of Talend Services Factory contains the following samples:
+The Examples Folder of Talend Service Factory contains the following samples:
 
 jaxws-jms-spec: demonstrates the use of the Document-Literal style 
 binding over the SOAP/JMS Specification transport.

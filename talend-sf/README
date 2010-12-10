@@ -1,7 +1,7 @@
-Welcome to Talend Services Framework!
+Welcome to Talend Service Factory!
 =====================================
 
-Talend Services Framework (TSF) uses the industry leading open source 
+Talend Service Factory (TSF) uses the industry leading open source 
 Apache CXF implementation of JAX-WS to help you service enable your 
 existing applications and interfaces.  The CXF lightweight, modular 
 architecture is based on Spring, so it will work with your application 
@@ -64,7 +64,7 @@ features necessary for the enterprise.
 Lean Java 6 Distribution 
 ======================== 
 
-The Talend Service Framework has been tuned for operation with Java 6.
+The Talend Service Factory has been tuned for operation with Java 6.
 lib/ - the contents of the lib directory have been optimized for use on 
 Java 6.  Jars that are redundant to what is available in Java 6 have been 
 removed.
@@ -91,10 +91,10 @@ the examples.
 Examples 
 ======== 
 
-Talend Services Framework provides several new examples in a separate download
+Talend Service Factory provides several new examples in a separate download
 available from <URL TO EXAMPLES DOWNLOADS>.  The example applications and 
 tutorials demonstrate functionality and advanced features of Talend
-Services Framework.  The examples demonstrate how to use different 
+Service Factory.  The examples demonstrate how to use different 
 functionality including:
 * 	Advanced JAX-RS
 *	multi-platform deployment to JVM / Servlet / JEE Containers / OSGI

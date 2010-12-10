@@ -1,7 +1,7 @@
-Welcome to Talend Services Framework!
+Welcome to Talend Service Factory!
 =====================================
 
-Talend Services Framework (TSF) uses the industry leading open source 
+Talend Service Factory (TSF) uses the industry leading open source 
 Apache CXF implementation of JAX-WS to help you service enable your 
 existing applications and interfaces.  The CXF lightweight, modular 
 architecture is based on Spring, so it will work with your application 

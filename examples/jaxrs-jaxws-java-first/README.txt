@@ -38,7 +38,7 @@ Deploying the service
 
     cd war; mvn jetty:run
 
- * To the Talend Services Framework OSGi container:
+ * To the Talend Service Factory OSGi container:
 
     From the OSGi command line, run:
 	install mvn:com.talend.sf.examples.jaxrs-jaxws-java-first/jaxrs-jaxws-java-first-common/1.0
