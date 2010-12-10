@@ -19,7 +19,7 @@ public class Server {
         Endpoint endpoint = Endpoint.create(implementor);
 
         // Add the DemoInterceptor's to print the contents
-        DemoInterceptor.addInterceptors((EndpointImpl)endpoint);
+        DemoInterceptor.addInterceptors((EndpointImpl)endpoint.getBinding());
         endpoint.publish(address);
     }
 

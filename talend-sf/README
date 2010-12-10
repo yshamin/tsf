@@ -84,8 +84,8 @@ Please submit CXF bug reports with JIRA at https://issues.apache.org/jira/browse
 Please submit TSF bug reports with JIRA at <Talend SF site> 
 
 Examples are documented individually and include instructions for building
-and running each example with just a few command lines.  They can be found 
-in the examples directory.
+and running each example with just a few command lines.  See below for obtaining 
+the examples.
 
 
 Examples 

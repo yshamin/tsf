@@ -5,6 +5,7 @@ package demo.interceptors.interceptor;
 
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.xml.stream.XMLStreamReader;
@@ -18,6 +19,7 @@ import org.apache.cxf.message.Message;
 import org.apache.cxf.message.MessageUtils;
 import org.apache.cxf.phase.Phase;
 import org.apache.cxf.phase.PhaseInterceptor;
+import org.apache.cxf.phase.PhaseInterceptorChain;
 import org.apache.cxf.phase.PhaseManager;
 
 /**
@@ -53,6 +55,10 @@ public class DemoInterceptor implements PhaseInterceptor<Message> {
     }
 
     public void handleMessage(Message message) throws Fault {
+        PhaseInterceptorChain pic = (PhaseInterceptorChain)message.getInterceptorChain();
+        if (!somethingMayHaveChanged(pic)) {
+            return;
+        }
         System.out.println("Phase: " + phase);
         System.out.println("        out: " + MessageUtils.isOutbound(message));
         System.out.println("   contents: " + message.getContentFormats());
@@ -71,10 +77,33 @@ public class DemoInterceptor implements PhaseInterceptor<Message> {
                 System.out.println("      reader: " + event);
             }
         }
+        List<?> params = message.getContent(List.class);
+        if (params != null) {
+            System.out.println("      params: " + params);
+        }
         System.out.println("      chain: ");
-        printInterceptorChain(message.getInterceptorChain());
+        printInterceptorChain(pic);
         System.out.println();
         System.out.println();
+    }
+
+    //just check to see if the previous interceptor was also an instanceof
+    //DemoInterceptor.  If so, we don't really need to print anything 
+    //as we know nothing has changed.
+    private boolean somethingMayHaveChanged(PhaseInterceptorChain pic) {
+        Iterator<Interceptor<? extends Message>> it = pic.iterator();
+        Interceptor<? extends Message> last = null;
+        while (it.hasNext()) {
+            Interceptor<? extends Message> cur = it.next();
+            if (cur == this) {
+                if (last instanceof DemoInterceptor) {
+                    return false;
+                }
+                return true;
+            }
+            last = cur;
+        }
+        return true;
     }
 
     /**
@@ -123,7 +152,7 @@ public class DemoInterceptor implements PhaseInterceptor<Message> {
     }
 
     public Set<String> getAfter() {
-        return Collections.singleton("*");
+        return Collections.emptySet();
     }
 
     public Set<String> getBefore() {

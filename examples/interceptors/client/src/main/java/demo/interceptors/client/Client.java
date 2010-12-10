@@ -37,7 +37,7 @@ public final class Client {
         // Use CXF API's to grab the underlying Client object and add
         // the DemoInterceptor's to it
         org.apache.cxf.endpoint.Client client = ClientProxy.getClient(greeter);
-        DemoInterceptor.addInterceptors(client);
+        DemoInterceptor.addInterceptors(client.getEndpoint().getBinding());
 
         System.out.println("Invoking greetMe...");
         System.out.println("server responded with: " + greeter.greetMe(System.getProperty("user.name")));
