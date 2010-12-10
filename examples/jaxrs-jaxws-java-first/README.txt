@@ -34,11 +34,11 @@ for deploying the service either to servlet or OSGI containers.
 
 Deploying the service
 ---------------------------------------
- * To the servlet container
+ * To the servlet container:
 
     cd war; mvn jetty:run
 
- * To the OSGI container
+ * To the Talend Services Framework OSGi container:
 
     From the OSGi command line, run:
 	install mvn:com.talend.sf.examples.jaxrs-jaxws-java-first/jaxrs-jaxws-java-first-common/1.0
