@@ -14,9 +14,9 @@ import com.talend.examples.jms_greeter.JMSGreeterService;
 public final class Client {
 
     private static final QName SERVICE_NAME =
-        new QName("http://cxf.apache.org/jms_greeter", "JMSGreeterService");
+        new QName("http://talend.com/examples/jms-greeter", "JMSGreeterService");
     private static final QName PORT_NAME =
-        new QName("http://cxf.apache.org/jms_greeter", "GreeterPort");
+        new QName("http://talend.com/examples/jms-greeter", "GreeterPort");
 
     public Client() throws Exception {
         this(new String[0]);

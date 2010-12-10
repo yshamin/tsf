@@ -9,8 +9,8 @@ import com.talend.examples.jms_greeter.JMSGreeterPortType;
 
 @javax.jws.WebService(portName = "GreeterPort", 
                       serviceName = "JMSGreeterService",
-                      targetNamespace = "http://cxf.apache.org/jms_greeter",
-                      endpointInterface = "org.apache.cxf.jms_greeter.JMSGreeterPortType", 
+                      targetNamespace = "http://talend.com/examples/jms-greeter",
+                      endpointInterface = "com.talend.examples.jms_greeter.JMSGreeterPortType", 
                       wsdlLocation = "classpath:/jms-spec-wsdl/jms_greeter.wsdl")
 public class GreeterJMSImpl implements JMSGreeterPortType {
 
