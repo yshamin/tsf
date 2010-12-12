@@ -26,10 +26,14 @@ public interface PersonService {
      * Returns an explicit collection of persons in either XML or JSON formats
      * in response to HTTP GET requests.
      * 
-     * @param start Starting index of the person to return (not necessarily ID)
-     * @param size Number of persons to return (-1 to signify all persons) If
-     *            query param not provided, primitive types default to value 0,
-     *            Objects to null unless overridden via @DefaultValue
+     * Note that in order to demonstrate that the JAX-RS runtime manages the
+     * initialization of both method parameters, Integer types are used.
+     * Primitive types such as 'int' could have been used instead.  
+     * 
+     * @param start Starting index (not ID) of the person to return, 
+     *        0 by default (as indicated by the DefaultValue annotation)
+     * @param size Number of persons to return, -1 to signify all persons
+     *        (as indicated by the DefaultValue annotation)
      */
     @GET
     @Produces({"application/xml", "application/json"})
