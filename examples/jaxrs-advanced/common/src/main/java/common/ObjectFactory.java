@@ -38,7 +38,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}
-     * {@link GetCustomersByNameResponse }{@code >}
+     * {@link Person }{@code >}
      */
     @XmlElementDecl(namespace = "http://org/persons/", name = "Person")
     public JAXBElement<Person> createPerson(Person value) {
@@ -47,7 +47,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}
-     * {@link GetCustomersByNameResponse }{@code >}
+     * {@link PersonCollection }{@code >}
      */
     @XmlElementDecl(namespace = "http://org/persons/", name = "Persons")
     public JAXBElement<PersonCollection> createPersonCollection(PersonCollection value) {
