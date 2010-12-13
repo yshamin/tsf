@@ -6,7 +6,7 @@ package common;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "User")
+@XmlRootElement(namespace = "http://hello.com", name = "User")
 @XmlType(name = "User")
 public class UserImpl implements User {
     String name;
