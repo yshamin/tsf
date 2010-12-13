@@ -42,7 +42,7 @@
                     <mainClass> 
                          client.RESTClient 
                     </mainClass> 
-                </configuration
+                </configuration>
             </plugin>
         </plugins>
     </build>

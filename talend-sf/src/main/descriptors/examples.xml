@@ -28,6 +28,9 @@
             <outputDirectory>/examples</outputDirectory>
             <excludes>
                 <exclude>**/target/**</exclude>
+                <exclude>**/.settings/**</exclude>
+                <exclude>**/.project</exclude>
+                <exclude>**/.classpath</exclude>
             </excludes>
         </fileSet>
     </fileSets>

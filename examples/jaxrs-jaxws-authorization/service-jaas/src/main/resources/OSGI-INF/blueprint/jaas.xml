@@ -8,7 +8,7 @@
     <jaas:config name="karaf">
         <jaas:module className="org.apache.karaf.jaas.modules.properties.PropertiesLoginModule" 
                      flags="required">
-           users=$[karaf.base]/etc/user.properties
+           users=$[karaf.base]/etc/users.properties
         </jaas:module>
     </jaas:config>
 

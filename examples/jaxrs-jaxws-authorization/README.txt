@@ -3,7 +3,7 @@ JAX-RS JAX-WS Authorization Example
 
 The demo shows how a single service instance can be exposed as either JAX-RS or JAX-WS
 service at the same time and how CXF JAX-RS and JAX-WS proxies can reuse the same code for
-invoking on the corresponding emdpoints.
+invoking on the corresponding endpoints.
 
 Additionally, it shows how a container-managed authentication can be used to populate a security context and how CXF authorization filters enforce the required authorization rules.
 
@@ -41,7 +41,7 @@ Starting the service
 
  * From within the Talend Service Factory OSGi container:
 
-    1. Copy service-jaas/src/main/resources/user.properties to $KARAF_HOME/etc
+    1. Copy service-jaas/src/main/resources/users.properties to $KARAF_HOME/etc
 
     2. Install and start a bundle configuring a JAAS LoginModule :  
 	
