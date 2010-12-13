@@ -39,17 +39,10 @@
                 </executions>
                 <configuration>
                     <executable>java</executable>
-                    <arguments>
-                        <argument>-classpath</argument>
-                        <classpath />
-                        <argument>
-                     client.RESTClient
-                        </argument>
-                    </arguments>
-                </configuration>
-                <!-- alternative configuration -->
-                <!--configuration> <executable>java</executable> <mainClass> 
-                   client.RESTClient </mainClass> </configuration -->
+                    <mainClass> 
+                         client.RESTClient 
+                    </mainClass> 
+                </configuration
             </plugin>
         </plugins>
     </build>
