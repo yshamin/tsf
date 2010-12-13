@@ -41,7 +41,7 @@ Starting the service
 
  * From within the Talend Service Factory OSGi container:
 
-    1. Copy service-jaas/src/main/resources/user.properties to $KARAF_HOME/etc
+    1. Copy service-jaas/src/main/resources/users.properties to $KARAF_HOME/etc
 
     2. Install and start a bundle configuring a JAAS LoginModule :  
 	
