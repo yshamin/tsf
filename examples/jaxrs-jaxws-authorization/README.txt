@@ -41,12 +41,14 @@ Starting the service
 
  * From within the Talend Service Factory OSGi container:
 
-    From the OSGi command line :
-	1. Install and start a bundle configuring a JAAS LoginModule :  
+    1. Copy service-jaas/src/main/resources/user.properties to $KARAF_HOME/etc
+
+    2. Install and start a bundle configuring a JAAS LoginModule :  
 	
 	install mvn:com.talend.sf.examples.jaxrs-jaxws-authorization/jaxrs-jaxws-authorization-service-jaas/1.0
+	start <bundle-id>
 	
-	2. Install and start common and service bundles :
+	3. Install and start common and service bundles :
 	
 	install mvn:com.talend.sf.examples.jaxrs-jaxws-authorization/jaxrs-jaxws-authorization-common/1.0
     install mvn:com.talend.sf.examples.jaxrs-jaxws-authorization/jaxrs-jaxws-authorization-service/1.0
