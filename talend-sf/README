@@ -12,7 +12,7 @@ Tomcat, within a JEE server, or in an OSGI container such as Equinox.
 CXF supports Web Services using 
 SOAP with full WS-*functionality including support for WS-Addressing,
 WS-Reliable Messaging, and WS-Security over both HTTP and JMS transports.
-CXF elegantly simple architecture allows declarative, policy-centric 
+CXF's elegantly simple architecture allows declarative, policy-centric 
 support of these qualities of service through configuration rather than 
 code.  It also supports non-SOAP bindings including REST.  CXF open 
 standards and portability enable you to deliver interoperability for 

@@ -3,7 +3,7 @@ JAX-RS JAX-WS Authorization Example
 
 The demo shows how a single service instance can be exposed as either JAX-RS or JAX-WS
 service at the same time and how CXF JAX-RS and JAX-WS proxies can reuse the same code for
-invoking on the corresponding emdpoints.
+invoking on the corresponding endpoints.
 
 Additionally, it shows how a container-managed authentication can be used to populate a security context and how CXF authorization filters enforce the required authorization rules.
 

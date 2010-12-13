@@ -12,12 +12,12 @@ Tomcat, within a JEE server, or in an OSGI container such as Equinox.
 
 
 This package contains several new examples that show advanced features
-of CXF.  All of the examples are setup to be built and run indepentent,
+of CXF.  All of the examples are setup to be built and run independently,
 but they are also all setup to be run in the Talend Service Factory
 OSGi container that can be obtained from <PUT URL HERE>.
 
 
-jaxws-jms-spec: demonstrates using JAX-WS to clients and servers to
+jaxws-jms-spec: demonstrates using JAX-WS clients and servers to
 talk SOAP over JMS, but using the SOAP/JMS Specification for 
 configuration.
 
