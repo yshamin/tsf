@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "IntegerUserMap")
+@XmlRootElement(namespace = "http://hello.com", name = "IntegerUserMap")
 @XmlType(name = "IntegerUserMap")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class IntegerUserMap {
