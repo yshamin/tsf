@@ -109,7 +109,7 @@ public final class RESTClient {
             }
         } catch (WebApplicationException ex) {
             if (admin) {
-                throw new RuntimeException("Admin can invoke getUsers");
+                throw new RuntimeException("Admin can invoke getUsers, status " + ex.getResponse().getStatus());
             }
             if (ex.getResponse().getStatus() != 403) {
                 throw new RuntimeException("403 response code is expected");

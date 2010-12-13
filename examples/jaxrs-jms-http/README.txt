@@ -44,13 +44,13 @@ ways to get a JMS broker running:
      will then start it.
 
 
-Deploying the service
+Starting the service
 ---------------------------------------
- * To the servlet container
+ * In the servlet container
 
     cd war; mvn jetty:run
 
- * To the OSGI container
+ * From within the Talend Service Factory OSGI container
 
     From the OSGi command line, run:
 	install mvn:com.talend.sf.examples.jaxrs-jms-http/jaxrs-jms-http-common/1.0

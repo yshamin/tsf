@@ -35,13 +35,13 @@ Using either UNIX or Windows:
 Running this command will build the demo and create a WAR archive and an OSGI bundle 
 for deploying the service either to servlet or OSGI containers.
 
-Deploying the service
+Starting the service
 ---------------------------------------
- * To the servlet container
+ * In the servlet container
 
     cd war; mvn jetty:run
 
- * To the Talend Service Factory OSGi container:
+ * From within the Talend Service Factory OSGi container:
 
     From the OSGi command line, run:
 	install mvn:com.talend.sf.examples.jaxrs-intro-example/jaxrs-intro-common/1.0

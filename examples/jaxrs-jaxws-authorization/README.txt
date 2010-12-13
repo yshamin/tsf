@@ -33,11 +33,28 @@ Using either UNIX or Windows:
 Running this command will build the demo and create a WAR archive and an OSGI bundle 
 for deploying the service either to servlet or OSGI containers.
 
-Deploying the service
+Starting the service
 ---------------------------------------
- * To the servlet container:
+ * In the servlet container:
 
     cd war; mvn jetty:run
+
+ * From within the Talend Service Factory OSGi container:
+
+    From the OSGi command line :
+	1. Install and start a bundle configuring a JAAS LoginModule :  
+	
+	install mvn:com.talend.sf.examples.jaxrs-jaxws-authorization/jaxrs-jaxws-authorization-service-jaas/1.0
+	
+	2. Install and start common and service bundles :
+	
+	install mvn:com.talend.sf.examples.jaxrs-jaxws-authorization/jaxrs-jaxws-authorization-common/1.0
+    install mvn:com.talend.sf.examples.jaxrs-jaxws-authorization/jaxrs-jaxws-authorization-service/1.0
+    
+    That should print out the bundle IDs for the common and server bundles. From 
+    the OSGi command line, then start the installed bundles, for example
+        start 115
+    where 115 is the bundle ID number that was printed during install.
 
 Running the client
 ---------------------------------------
@@ -54,11 +71,5 @@ This port value is set during the build in the client.properties resource file. 
 Demo Desciption
 ---------------
 
-The goal of the demo is to show how the existing production code can be easily exposed as RESTful service by applying 
-several JAX-RS annotations to the interfaces, for example, to HelloWorld interface.
-
-Additionally it shows the CXF security interceptors in action which can be applied to individual endpoints in order to enforce the RBAC authorization rules. 
-
-By following this approach users can experiment with the RESTful approach without necessarily changing the way the existing application
-has been designed. 
+This demo shows how CXF security interceptors can be applied to individual endpoints in order to enforce the RBAC authorization rules. 
 

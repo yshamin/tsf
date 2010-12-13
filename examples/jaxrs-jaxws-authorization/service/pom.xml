@@ -29,26 +29,26 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <configuration>
-                    <instructions>
-                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-                        <Import-Package>
+              <groupId>org.apache.felix</groupId>
+              <artifactId>maven-bundle-plugin</artifactId>
+              <configuration>
+                <instructions>
+                 <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                 <Import-Package>
                    common,
                    javax.wsdl,
-		   javax.xml.bind,
-		   javax.xml.bind.annotation,
-		   javax.xml.bind.annotation.adapters,
+		           javax.xml.bind,
+		           javax.xml.bind.annotation,
+		           javax.xml.bind.annotation.adapters,
                    javax.xml.namespace,
                    javax.xml.ws,
                    javax.xml.ws.soap,
- 		   javax.ws.rs,
+ 		           javax.ws.rs,
                    javax.ws.rs.ext,
                    javax.ws.rs.core,
                    javax.jws,
- 		   META-INF.cxf,
-		   META-INF.cxf.osgi,
+ 		           META-INF.cxf,
+		           META-INF.cxf.osgi,
                    org.apache.cxf.binding,
 		           org.apache.cxf.bus,
                    org.apache.cxf.buslifecycle,
@@ -69,24 +69,26 @@
                    org.apache.cxf.jaxws.context,
                    org.apache.cxf.headers,
                    org.apache.cxf.phase,
-		   org.apache.cxf.resource,
+		           org.apache.cxf.resource,
                    org.apache.cxf.service.factory,
-		   org.apache.cxf.transport,
+		           org.apache.cxf.transport,
                    org.apache.cxf.transport.http,
-		   org.apache.cxf.transport.http_osgi,
+		           org.apache.cxf.transport.http_osgi,
                    org.apache.cxf.workqueue,
                    org.apache.cxf.wsdl11,
                    org.apache.cxf.tools.common.extensions.soap,
                    org.apache.cxf.binding.soap,
                    org.apache.cxf.binding.soap.spring,
                    org.apache.cxf.jaxws.spring,
-		   org.springframework.beans.factory.config,
-                        </Import-Package>
-                        <Export-Package>
-                   service
-                        </Export-Package>
-                    </instructions>
-                </configuration>
+                   org.apache.cxf.configuration.security,
+		           org.springframework.beans.factory.config,
+		           javax.security.auth,
+		           javax.security.auth.spi,
+		           javax.security.auth.login,
+		           javax.security.auth.callback
+                 </Import-Package>
+                </instructions>
+               </configuration>
             </plugin>
         </plugins>
     </build>
