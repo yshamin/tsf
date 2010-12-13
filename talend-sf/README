@@ -7,7 +7,7 @@ existing applications and interfaces.  The CXF lightweight, modular
 architecture is based on Spring, so it will work with your application 
 regardless of the platform on which it is running.  It will run on 
 stand-alone JVM applications, as part of a servlet container such as 
-Tomcat, within a JEE server, or in an OSGI container such as Equinox.  
+Tomcat, within a JEE server, or in an OSGi container such as Equinox.  
 
 CXF supports Web Services using 
 SOAP with full WS-*functionality including support for WS-Addressing,
@@ -19,11 +19,11 @@ standards and portability enable you to deliver interoperability for
 your applications to maximize the value of your application to your users.
 
 The TSF distribution supplements the Apache CXF core with support for 
-OSGI containers along with illustrative examples for how to implement 
+OSGi containers along with illustrative examples for how to implement 
 different messaging qualities of service in different container 
 environments.  CXF design-tools include support for Maven plug-ins,
 WSDL tooling, and Spring 2.x XML configuration support.  TSF supplements
-this with additional Maven archetypes to support development in an OSGI 
+this with additional Maven archetypes to support development in an OSGi 
 environment.
 
 
@@ -31,7 +31,7 @@ Contents
 ======== 
 
 Apache CXF
-OSGI Container
+OSGi Container
 Getting Started
 Examples
 
@@ -40,21 +40,21 @@ Apache CXF
 
 This package contains a complete version of Apache CXF, the industry 
 leading open source solution for web services.  It also includes value
-added components such as OSGI container and several new examples.
+added components such as OSGi container and several new examples.
 For more information about Apache CXF see http://cxf.apache.org/ .  
 
 
-OSGI container 
+OSGi container 
 ============== 
 
 The container subdirectory contains a preconfigured OSGi container that 
 contains all the required OSGi bundles for the CXF 3rd party dependencies.
 It also includes Apache Karaf to provide easy administration and 
 configuration.  See the karaf-manual pdf file in the container directory 
-for more information about Karaf.  For more information about OSGI and Apache 
+for more information about Karaf.  For more information about OSGi and Apache 
 Karaf see http://karaf.apache.org/ .
 
-OSGI provides a mature, open standards based, highly modular framework for 
+OSGi provides a mature, open standards based, highly modular framework for 
 managing component dependencies, service invocation, and lifecycles.  It is 
 the basis for Eclipse and provides a lightweight alternative to more 
 monolithic JEE containers while still retaining the powerful management 
@@ -97,7 +97,7 @@ tutorials demonstrate functionality and advanced features of Talend
 Service Factory.  The examples demonstrate how to use different 
 functionality including:
 * 	Advanced JAX-RS
-*	multi-platform deployment to JVM / Servlet / JEE Containers / OSGI
+*	multi-platform deployment to JVM / Servlet / JEE Containers / OSGi
 *	message layer security
 *	asynchronous messaging
 

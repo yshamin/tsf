@@ -50,7 +50,7 @@ Starting the service
 
     cd war; mvn jetty:run
 
- * From within the Talend Service Factory OSGI container
+ * From within the Talend Service Factory OSGi container
 
     From the OSGi command line, run:
 	install mvn:com.talend.sf.examples.jaxrs-jms-http/jaxrs-jms-http-common/1.0

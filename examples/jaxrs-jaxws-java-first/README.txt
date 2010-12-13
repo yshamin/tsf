@@ -29,8 +29,8 @@ Using either UNIX or Windows:
 
     mvn install
 
-Running this command will build the demo and create a WAR archive and an OSGI bundle 
-for deploying the service either to servlet or OSGI containers.
+Running this command will build the demo and create a WAR archive and an OSGi bundle 
+for deploying the service either to servlet or OSGi containers.
 
 Starting the service
 ---------------------------------------

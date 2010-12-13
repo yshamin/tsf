@@ -23,7 +23,7 @@ This sample consists of 3 parts:
 common/   - This directory contains the code that is common
             to both the client and the server. 
             
-service/  - This is the JAX-RS service with multiple root resources packaged as an OSGI bundle.
+service/  - This is the JAX-RS service with multiple root resources packaged as an OSGi bundle.
              
 war/      - This module creates a WAR archive containing the code from common and service modules.   
 
@@ -40,8 +40,8 @@ Using either UNIX or Windows:
 
     mvn install
 
-Running this command will build the demo and create a WAR archive and an OSGI bundle 
-for deploying the service either to servlet or OSGI containers.
+Running this command will build the demo and create a WAR archive and an OSGi bundle 
+for deploying the service either to servlet or OSGi containers.
 
 Starting the service
 ---------------------------------------

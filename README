@@ -7,7 +7,7 @@ existing applications and interfaces.  The CXF lightweight, modular
 architecture is based on Spring, so it will work with your application 
 regardless of the platform on which it is running.  It will run on 
 stand-alone JVM applications, as part of a servlet container such as 
-Tomcat, within a JEE server, or in an OSGI container such as Equinox.  
+Tomcat, within a JEE server, or in an OSGi container such as Equinox.  
 
 CXF supports Web Services using 
 SOAP with full WS-*functionality including support for WS-Addressing,
@@ -19,11 +19,11 @@ standards and portability enable you to deliver interoperability for
 your applications to maximize the value of your application to your users.
 
 The TSF distribution supplements the Apache CXF core with support for 
-OSGI containers along with illustrative examples for how to implement 
+OSGi containers along with illustrative examples for how to implement 
 different messaging qualities of service in different container 
 environments.  CXF design-tools include support for Maven plug-ins,
 WSDL tooling, and Spring 2.x XML configuration support.  TSF supplements
-this with additional Maven archetypes to support development in an OSGI 
+this with additional Maven archetypes to support development in an OSGi 
 environment.
 
 
