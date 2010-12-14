@@ -91,10 +91,10 @@ Examples
 ======== 
 
 Talend Service Factory provides several new examples in a separate download
-available from http://www.talend.com/resources/documentation.php.  The example 
-applications and tutorials demonstrate functionality and advanced features 
-of Talend Service Factory.  The examples demonstrate how to use different 
-functionality including:
+available from http://www.talend.com/resources/documentation.php#SF .  The 
+example applications and tutorials demonstrate functionality and advanced 
+features of Talend Service Factory.  The examples demonstrate how to use 
+different functionality including:
 * 	Advanced JAX-RS
 *	multi-platform deployment to JVM / Servlet / JEE Containers / OSGi
 *	asynchronous messaging
