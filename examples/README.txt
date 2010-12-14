@@ -14,7 +14,8 @@ Tomcat, within a JEE server, or in an OSGi container such as Equinox.
 This package contains several new examples that show advanced features
 of CXF.  All of the examples are setup to be built and run independently,
 but they are also all setup to be run in the Talend Service Factory
-OSGi container that can be obtained from <PUT URL HERE>.
+OSGi container that can be obtained from:
+http://www.talend.com/download.php
 
 
 jaxws-jms-spec: demonstrates using JAX-WS clients and servers to
