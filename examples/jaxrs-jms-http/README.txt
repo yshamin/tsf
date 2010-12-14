@@ -89,7 +89,20 @@ between the two endpoints.
 The demo demonstrates how both CXF JAX-RS WebClients and pure JMS clients can interact with HTTP and JMS endpoints.
 It also shows how oneway HTTP requests can be further routed to JMS destinations.
 
+Note that :
 
-
-
-
+ - a JMS consumer in the JMSHttpClient sets "org.apache.cxf.request.uri" and "org.apache.cxf.request.method"
+ JMS properties to get a specific JAX-RS method being invoked on the server. These properties are optional, 
+ default values are "/" and "POST" respectively. For example, JMSHttpClient.addGetBookOverJMS invocation which
+ adds a new Book does not set these properties and thus JMSHttpBookStore.addBook() method will be invoked.
+ 
+ - JMS JAX-RS Server will also default to "text/xml" for Content-Type and Accept values.
+ JMS Consumers can override it by setting "Content-Type" and "Accept" properties. 
+ 
+ - JMSHttpBookStore.oneWayRequest() uses a org.apache.cxf.jaxrs.ext.Oneway annotation.
+ JMSHttpClient.addOnewayOverHttpGetOverJMS uses CXF JAX-RS WebClient to post a new Book oneway 
+ and eventually get it echoed back via JMS.  
+ 
+ - JMSHttpBookStore uses a CXF JAX-RS extension ProtocolHeaders which can be used to get to the headers
+ available either in the current HTTP or JMS request.    
+   

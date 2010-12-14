@@ -66,6 +66,8 @@ Demo Desciption
 The goal of the demo is to show how the existing production code can be easily exposed as RESTful service by applying 
 several JAX-RS annotations to the interfaces, for example, to the HelloWorld interface. 
 
+Note how both JAX-WS and JAX-RS proxies reuse the same code procedures for consuming the services.
+
 By following this approach users can experiment with the RESTful approach without necessarily changing the way the existing application
 has been designed.
 

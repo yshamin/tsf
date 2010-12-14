@@ -92,11 +92,31 @@ It lets users search for individual people by specifying one or more names as qu
 this service also verifies that the JAX-RS server is capable of supporting 
 multiple root resource classes.
 
+Note that :
+
+- Person class can act as either a JAXB bean or a JAX-RS sub-resource.
+For example, a method such as Person.getMother() is a sub-resource locator because it delegates
+to the actual resource method Person.getState() by returning a Person sub-resource instance.
+Person.getState() will return a Person JAXB bean instance.
+
+- Person class has a class-level JAX-RS Produces annotation which means that all the JAX-RS resource 
+methods will inherit it unless they provide their own Produces annotation.
+
+- PersonServiceImpl and Person return explicit collections while SearchService returns
+PersonCollection wrappers.
+
+- Person.updateAge method may throw a PersonUpdateException which will be caught by 
+JAX-RS PersonExceptionMapper provider and translated into an HTTP 400 status.
+
+- PersonApplication is a JAX-RS Application implementation and it also has an AppPath annotation.
+It is used for starting a service from the command line.
+ 
+
 The RESTful client uses CXF's JAX-RS WebClient to traverse all the information about an individual Person and also adds a new child.
 It also shows how to use a simple proxy.
 
 Finally a simple proxy is created and is used to make the calls.
 
 Please check the comments in the code for a detailed description on how client calls are made and 
-how they are processed on the server side.
+how they are processed on the server side. 
 
