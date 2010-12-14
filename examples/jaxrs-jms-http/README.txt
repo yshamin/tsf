@@ -82,7 +82,7 @@ JAX-RS is the HTTP centric specification and it is likely developers will be sta
 working upon JAX-RS HTTP servers. However given the popularity of JMS the new requirements for the the existing
 JAX-RS servers receive messages over JMS will likely need to be met.
 
-This demo deliberately uses a war archive to emulate the possible development process where a JAX-RS HTTP server
+This demo intentionally uses a war archive to emulate the possible development process where a JAX-RS HTTP server
 is created first and at the next stage a CXF JAX-RS JMS endpoint is created with the same service instance being shared
 between the two endpoints.
 

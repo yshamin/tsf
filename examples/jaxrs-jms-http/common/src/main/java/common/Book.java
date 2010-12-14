@@ -6,7 +6,7 @@ package common;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
-@XmlRootElement(name = "Book")
+@XmlRootElement(namespace = "http://books", name = "Book")
 public class Book {
     private String name;
     private long id;
