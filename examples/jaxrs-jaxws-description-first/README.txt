@@ -59,13 +59,18 @@ Running the client
    - mvn exec:java
 
 By default, the client will use the http port 8080 for constructing the URIs.
-This port value is set during the build in the client.properties resource file. If the server is listening on the alternative port then you can use an 'http.port' system property during the build:
+This port value is set during the build in the client.properties resource file. 
+If the server is listening on the alternative port then you can use an 'http.port' system property during the build:
    
 - mvn install -Dhttp.port=8181
 
 Demo Desciption
 ---------------
 
-The goal of the demo is to show how the existing production code created as part of the document-first development process can be easily exposed as RESTful service by indirectly applying an external CXF JAX-RS user model resource to the interfaces and/or concrete implementations, for example, to ConsumerService interface. 
+The goal of the demo is to show how the existing production code created as part of the document-first development process can be easily exposed as 
+RESTful service by indirectly applying an external CXF JAX-RS user model resource to the interfaces and/or concrete implementations, for example, 
+to ConsumerService interface. See a model/ConsumerService-jaxrs.xml in the common module for a simple example of the user model.
 
+Note how JAX-RS endpoints and proxies are initialized with the Java classpath reference to the user model.  
+This can be done programmatically or from Spring.
 
