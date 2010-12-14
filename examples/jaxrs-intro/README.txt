@@ -56,7 +56,7 @@ Running the client
  
 * From the command line
    - cd client
-   - mvn exec:exec
+   - mvn exec:java
 
 
 Demo Description
