@@ -1,10 +1,10 @@
 
-Welcome to Talend Service Factory!
-=====================================
+Welcome to Talend Service Factory Community Edition (CE)!
+=========================================================
 
-Talend Service Factory (TSF) uses the industry leading open source 
-Apache CXF implementation of JAX-WS to help you service enable your 
-existing applications and interfaces.  The CXF lightweight, modular 
+Talend Service Factory Community Edition (CE) uses the industry leading 
+open source Apache CXF implementation of JAX-WS to help you service enable
+your existing applications and interfaces.  The CXF lightweight, modular 
 architecture is based on Spring, so it will work with your application 
 regardless of the platform on which it is running.  It will run on 
 stand-alone JVM applications, as part of a servlet container such as 
@@ -13,7 +13,7 @@ Tomcat, within a JEE server, or in an OSGi container such as Equinox.
 
 This package contains several new examples that show advanced features
 of CXF.  All of the examples are setup to be built and run independently,
-but they are also all setup to be run in the Talend Service Factory
+but they are also all setup to be run in the Talend Service Factory CE
 OSGi container that can be obtained from:
 http://www.talend.com/download.php#SF
 
@@ -52,3 +52,4 @@ corresponding endpoints.
 
 jaxrs-jms-http: demonstrates how a JAX-RS HTTP server can be enhanced
 to receive JMS messages.
+
